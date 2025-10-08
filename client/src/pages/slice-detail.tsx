@@ -197,25 +197,21 @@ export default function SliceDetail() {
           )}
 
           {/* Action Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4">
-            <Button 
-              className="flex-1 bg-gradient-to-r from-primary to-secondary hover:shadow-lg hover:shadow-primary/50 transition-all-300"
-              disabled={!slice.isUnlocked}
-              data-testid="button-mint-slice"
-            >
-              {slice.isUnlocked ? 'Mint This Slice' : 'Not Yet Unlocked'}
-            </Button>
-            
-            <Button 
-              variant="outline" 
-              className="glass border-white/20 hover:glass-strong"
-              disabled={!slice.solanaAddress}
-              data-testid="button-view-explorer"
-            >
-              <ExternalLink className="w-4 h-4 mr-2" />
-              View on Explorer
-            </Button>
-          </div>
+          {slice.solanaAddress && (
+            <div className="flex flex-col sm:flex-row gap-4">
+              <Button 
+                variant="outline" 
+                className="glass border-white/20 hover:glass-strong w-full"
+                asChild
+                data-testid="button-view-explorer"
+              >
+                <a href={`https://explorer.solana.com/address/${slice.solanaAddress}`} target="_blank" rel="noopener noreferrer">
+                  <ExternalLink className="w-4 h-4 mr-2" />
+                  View on Solana Explorer
+                </a>
+              </Button>
+            </div>
+          )}
         </div>
       </div>
     </div>

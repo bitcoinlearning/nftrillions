@@ -16,7 +16,7 @@ export default function HeroSection() {
   };
 
   return (
-    <section className="relative pt-32 pb-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
+    <section id="home" className="relative pt-32 pb-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-12 animate-slide-up">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass border border-primary/20 mb-6" data-testid="status-badge">
@@ -58,8 +58,8 @@ export default function HeroSection() {
 
           <div className="flex flex-wrap items-center justify-center gap-4 text-sm" data-testid="hero-stats">
             <div className="px-4 py-2 rounded-full glass border border-white/10" data-testid="stat-circulating">
-              <span className="text-muted-foreground">Circulating:</span>
-              <span className="font-bold ml-2">370 / 1,000</span>
+              <span className="text-muted-foreground">Minted:</span>
+              <span className="font-bold ml-2">378 / 1,000</span>
             </div>
             <div className="px-4 py-2 rounded-full glass border border-white/10" data-testid="stat-royalties">
               <span className="text-muted-foreground">Royalties:</span>

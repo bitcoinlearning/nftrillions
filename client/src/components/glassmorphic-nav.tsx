@@ -49,14 +49,6 @@ export default function GlassmorphicNav() {
             
             <div className="hidden md:flex items-center gap-6" data-testid="nav-desktop-links">
               <a 
-                href="#mint" 
-                onClick={(e) => { e.preventDefault(); handleAnchorClick('#mint'); }}
-                className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors"
-                data-testid="nav-link-mint"
-              >
-                Mint
-              </a>
-              <a 
                 href="#how" 
                 onClick={(e) => { e.preventDefault(); handleAnchorClick('#how'); }}
                 className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors"
@@ -113,14 +105,6 @@ export default function GlassmorphicNav() {
           />
           <div className="fixed top-20 left-4 right-4 glass-strong rounded-2xl border border-white/20 p-6">
             <div className="space-y-4" data-testid="nav-mobile-links">
-              <a 
-                href="#mint" 
-                onClick={(e) => { e.preventDefault(); handleAnchorClick('#mint'); }}
-                className="block text-lg font-medium text-foreground hover:text-primary transition-colors"
-                data-testid="nav-mobile-link-mint"
-              >
-                Mint
-              </a>
               <a 
                 href="#how" 
                 onClick={(e) => { e.preventDefault(); handleAnchorClick('#how'); }}

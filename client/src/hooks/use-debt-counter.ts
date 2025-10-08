@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { debtAPI } from '@/lib/debt-api';
 
 export function useDebtCounter(initialValue?: string) {
-  const [debt, setDebt] = useState(initialValue || '$37,000,000,000,000');
+  const [debt, setDebt] = useState(initialValue || '$37,840,931,900,999');
 
   useEffect(() => {
     // Update debt when initialValue changes (from API)

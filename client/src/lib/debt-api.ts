@@ -1,6 +1,6 @@
-// Simulated real-time debt API
+// Simulated real-time debt API (source: usdebtclock.org)
 export class DebtAPI {
-  private baseDebt = 37000000000000; // $37T
+  private baseDebt = 37840931900999; // Updated from usdebtclock.org
   private increment = 1000000; // $1M per update
   private intervalMs = 1000; // Update every second
   private startTime = Date.now(); // Track when we started counting

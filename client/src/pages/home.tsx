@@ -127,13 +127,6 @@ export default function Home() {
                 >
                   Browse All Slices
                 </a>
-                <a 
-                  href="#" 
-                  className="px-8 py-4 rounded-xl glass border border-white/20 font-bold text-lg hover:glass-strong transition-all-300"
-                  data-testid="link-join-discord"
-                >
-                  Join Discord
-                </a>
               </div>
             </div>
           </div>
@@ -177,7 +170,6 @@ export default function Home() {
             <div>
               <h4 className="font-display font-bold mb-4">Quick Links</h4>
               <ul className="space-y-2 text-muted-foreground">
-                <li><a href="#mint" className="hover:text-foreground transition-colors">Mint NFT</a></li>
                 <li><a href="#how" className="hover:text-foreground transition-colors">How It Works</a></li>
                 <li><a href="#collections" className="hover:text-foreground transition-colors">Collections</a></li>
                 <li><a href="#faq" className="hover:text-foreground transition-colors">FAQ</a></li>

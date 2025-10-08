@@ -104,12 +104,12 @@ export class MemStorage implements IStorage {
       this.slices.set(slice.number, slice);
     });
 
-    // Initialize debt stats
+    // Initialize debt stats (source: usdebtclock.org)
     this.debtStats = {
       id: randomUUID(),
-      currentDebt: "$37,000,000,000,000",
-      unlockedSlices: 370,
-      nextUnlockAt: "$37,100,000,000,000",
+      currentDebt: "$37,840,931,900,999",
+      unlockedSlices: 378,
+      nextUnlockAt: "$37,900,000,000,000",
       lastUpdated: new Date(),
     };
   }
