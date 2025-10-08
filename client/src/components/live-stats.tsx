@@ -89,7 +89,17 @@ export default function LiveStats() {
                 >
                   {animatedDebt}
                 </div>
-                <div className="text-xs text-muted-foreground">Live from Treasury APIs</div>
+                <div className="text-xs text-muted-foreground">
+                  <a 
+                    href="https://api.fiscaldata.treasury.gov/services/api/fiscal_service/v2/accounting/od/debt_to_penny" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="hover:text-primary transition-colors underline"
+                  >
+                    Live from Treasury APIs
+                  </a>
+                  <div className="mt-1 opacity-75">Counter increments at estimated rate (~$80k/sec)</div>
+                </div>
               </div>
             </div>
 

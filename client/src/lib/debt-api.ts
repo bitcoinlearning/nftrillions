@@ -10,7 +10,7 @@ interface CachedDebt {
 
 export class DebtAPI {
   private baseDebt = 37840931900999; // Fallback value
-  private increment = 1000000; // $1M per update
+  private increment = 80000; // ~$80K per second (estimated average debt growth rate)
   private intervalMs = 1000; // Update every second
   private startTime = Date.now();
 
