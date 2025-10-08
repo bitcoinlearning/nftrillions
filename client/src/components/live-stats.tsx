@@ -2,30 +2,45 @@ import { useQuery } from "@tanstack/react-query";
 import { useDebtCounter } from "@/hooks/use-debt-counter";
 import { TrendingUp, Lock, Clock } from "lucide-react";
 import type { DebtStats } from "@shared/schema";
-
-interface DebtApiResponse {
-  amount: number;
-  formatted: string;
-  cached: boolean;
-  cacheAge: number;
-  source: string;
-}
+import { debtAPI } from "@/lib/debt-api";
+import { useEffect, useState } from "react";
 
 export default function LiveStats() {
-  // Fetch real debt data from Treasury APIs with caching
-  const { data: realDebt } = useQuery<DebtApiResponse>({
-    queryKey: ["/api/debt/current"],
-    refetchInterval: 60 * 60 * 1000, // Refetch every hour
-    staleTime: 60 * 60 * 1000, // Consider data stale after 1 hour
-  });
+  const [realDebtAmount, setRealDebtAmount] = useState<number | null>(null);
 
   const { data: debtStats, isLoading } = useQuery<DebtStats>({
     queryKey: ["/api/debt-stats"],
-    refetchInterval: 60000, // Refetch every minute
+    refetchInterval: 60000,
   });
 
-  // Use real debt data as base for counter, fallback to debtStats
-  const animatedDebt = useDebtCounter(realDebt?.formatted || debtStats?.currentDebt || "$37,840,931,900,999");
+  // Fetch real debt from Treasury APIs (client-side with localStorage cache)
+  useEffect(() => {
+    let mounted = true;
+    
+    debtAPI.fetchRealDebt().then((amount) => {
+      if (mounted) {
+        setRealDebtAmount(amount);
+      }
+    });
+
+    // Refresh every 4 hours (matches cache duration)
+    const interval = setInterval(() => {
+      debtAPI.fetchRealDebt().then((amount) => {
+        if (mounted) {
+          setRealDebtAmount(amount);
+        }
+      });
+    }, 4 * 60 * 60 * 1000);
+
+    return () => {
+      mounted = false;
+      clearInterval(interval);
+    };
+  }, []);
+
+  // Use real debt data as base for counter
+  const formattedDebt = realDebtAmount ? '$' + realDebtAmount.toLocaleString('en-US') : debtStats?.currentDebt || "$37,840,931,900,999";
+  const animatedDebt = useDebtCounter(formattedDebt);
 
   if (isLoading || !debtStats) {
     return (
@@ -68,12 +83,13 @@ export default function LiveStats() {
                   Current U.S. Debt
                 </div>
                 <div 
-                  className="font-mono text-3xl md:text-4xl font-bold gradient-text mb-2" 
+                  className="font-mono text-xl sm:text-2xl lg:text-3xl font-bold gradient-text mb-2 break-all" 
                   data-testid="debt-counter"
+                  style={{ wordBreak: 'break-word', overflowWrap: 'break-word' }}
                 >
                   {animatedDebt}
                 </div>
-                <div className="text-xs text-muted-foreground">Updated every 60 seconds</div>
+                <div className="text-xs text-muted-foreground">Live from Treasury APIs</div>
               </div>
             </div>
 
@@ -85,7 +101,7 @@ export default function LiveStats() {
                   <Lock className="w-5 h-5" />
                   Unlocked on Solana
                 </div>
-                <div className="font-mono text-3xl md:text-4xl font-bold gradient-text-alt mb-2">
+                <div className="font-mono text-2xl sm:text-3xl lg:text-4xl font-bold gradient-text-alt mb-2">
                   {debtStats.unlockedSlices} / 1,000
                 </div>
                 <div className="text-xs text-muted-foreground">1 NFT per +$100B</div>
@@ -100,7 +116,7 @@ export default function LiveStats() {
                   <Clock className="w-5 h-5" />
                   Next Unlock At
                 </div>
-                <div className="font-mono text-3xl md:text-4xl font-bold gradient-text mb-2">
+                <div className="font-mono text-xl sm:text-2xl lg:text-3xl font-bold gradient-text mb-2 break-all">
                   {debtStats.nextUnlockAt}
                 </div>
                 <div className="text-xs text-muted-foreground">
