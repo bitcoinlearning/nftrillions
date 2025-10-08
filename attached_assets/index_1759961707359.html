@@ -1,0 +1,336 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>NFTrillions — $100B Debt Slices on Solana</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="NFTrillions is a satirical, educational NFT project on Solana. Collect $100B debt slices as the U.S. marches toward $100T. 1,000 max slices, released as milestones are hit.">
+  <link rel="canonical" href="https://NFTrillions.xyz/">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="NFTrillions — $100B Debt Slices on Solana">
+  <meta property="og:description" content="Satirical, educational NFTs chronicling the rise of U.S. debt. 1,000 $100B slices on Solana.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://NFTrillions.xyz/">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="NFTrillions — $100B Debt Slices on Solana">
+  <meta name="twitter:description" content="Own a slice of infinite fiat madness. 1,000 $100B NFTs on Solana.">
+
+  <!-- Schema.org (Organization + WebSite) -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"WebSite",
+    "name":"NFTrillions",
+    "url":"https://NFTrillions.xyz/",
+    "description":"Satirical NFT project chronicling U.S. debt on Solana.",
+    "inLanguage":"en-US",
+    "potentialAction":{"@type":"SearchAction","target":"https://NFTrillions.xyz/?q={search_term_string}","query-input":"required name=search_term_string"}
+  }
+  </script>
+
+  <style>
+    :root{
+      --bg:#0e0f12; --card:#15171c; --muted:#aeb4c0; --text:#e9edf4;
+      --accent:#00d68f; --accent2:#ff4d4f; --line:#23262e; --focus:#ffd666;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Arial,sans-serif;}
+    a{color:var(--accent);text-decoration:none} a:hover{text-decoration:underline}
+    .wrap{max-width:1200px;margin:0 auto;padding:24px}
+    header{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:12px 0}
+    .brand{font-weight:800;letter-spacing:.4px}
+    .tag{font-size:12px;color:var(--muted)}
+    .nav a{margin-left:14px;color:var(--text);opacity:.9}
+    .btn{display:inline-block;padding:12px 18px;border-radius:12px;border:1px solid var(--line);background:linear-gradient(90deg, var(--accent2), var(--accent));color:#fff;font-weight:700}
+    .btn.secondary{background:transparent;color:var(--text)}
+    .hero{padding:56px 0 28px;border-bottom:1px solid var(--line)}
+    .hero h1{font-size:clamp(28px,4.5vw,52px);line-height:1.15;margin:0 0 10px}
+    .hero p{color:var(--muted);max-width:820px;margin:0 0 22px}
+    .badges{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0 0}
+    .badge{border:1px solid var(--line);background:var(--card);color:var(--muted);font-size:12px;padding:6px 10px;border-radius:999px}
+
+    .section{padding:36px 0;border-bottom:1px solid var(--line)}
+    .section h2{margin:0 0 6px;font-size:clamp(20px,3vw,28px)}
+    .section .sub{color:var(--muted);margin:0 0 18px}
+    .grid{display:grid;gap:16px}
+    @media(min-width:720px){.grid.cols-3{grid-template-columns:repeat(3,1fr)} .grid.cols-2{grid-template-columns:repeat(2,1fr)}}
+    .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px}
+    .kpi{font-weight:800;font-size:28px}
+    .muted{color:var(--muted)}
+
+    /* Tier groups / accordion */
+    .tier{border:1px solid var(--line);border-radius:14px;background:var(--card);margin:10px 0;overflow:hidden}
+    .tier summary{cursor:pointer;list-style:none;padding:14px 16px;font-weight:700;display:flex;align-items:center;justify-content:space-between}
+    .tier summary::-webkit-details-marker{display:none}
+    .tier summary:focus{outline:2px dashed var(--focus);outline-offset:4px}
+    .tier .range{color:var(--muted);font-weight:600}
+    .tier .price{background:var(--bg);border:1px solid var(--line);padding:4px 8px;border-radius:999px;font-size:12px}
+    .tier .body{padding:8px 16px 16px;border-top:1px solid var(--line)}
+    .chips{display:flex;flex-wrap:wrap;gap:10px}
+    .chip{display:inline-block;padding:8px 10px;border:1px dashed var(--line);border-radius:999px;font-size:13px;color:var(--text)}
+    .chip.locked{opacity:.65}
+    .chip .tiny{font-size:12px;color:var(--muted)}
+    .row{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+    .note{font-size:13px;color:var(--muted)}
+
+    footer{padding:28px 0}
+    .footgrid{display:grid;gap:16px}
+    @media(min-width:720px){.footgrid{grid-template-columns:2fr 1fr 1fr}}
+    .small{font-size:13px;color:var(--muted)}
+    .pill{display:inline-block;border:1px solid var(--line);border-radius:999px;padding:6px 10px;font-size:12px;color:var(--muted)}
+  </style>
+
+  <script>
+    // Minimal enhancement: smooth scroll for in-page anchors
+    document.addEventListener('click', (e)=>{
+      const a = e.target.closest('a[href^="#"]'); if(!a) return;
+      const id = a.getAttribute('href').slice(1);
+      const el = document.getElementById(id);
+      if(el){ e.preventDefault(); el.scrollIntoView({behavior:'smooth', block:'start'}); }
+    });
+  </script>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div>
+        <div class="brand">NFTrillions</div>
+        <div class="tag">Own a slice of infinite fiat madness — Solana launch</div>
+      </div>
+      <nav class="nav" aria-label="primary">
+        <a href="#mint">Mint</a>
+        <a href="#how">How it Works</a>
+        <a href="#tiers">Collections</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero" id="top">
+      <h1>$100B Debt Slices — 1,000 NFTs on Solana</h1>
+      <p>NFTrillions is a satirical, educational NFT project chronicling the U.S. debt on-chain. We release one new NFT for every additional <strong>$100,000,000,000</strong> in debt — up to a hard cap of 1,000 slices. Each slice links to a page with context: CPI, rates, headlines, and who was in office at that moment.</p>
+      <div class="row" style="margin:14px 0 0">
+        <a class="btn" id="mint" href="#tiers">Mint / Explore (Solana)</a>
+        <a class="btn secondary" href="#how">Read How It Works</a>
+      </div>
+      <div class="badges">
+        <span class="badge">Circulating (now): ~370 / 1,000</span>
+        <span class="badge">Royalties: 5–10% (where enforced)</span>
+        <span class="badge">BTC & BNB: coming on separate pages</span>
+      </div>
+    </section>
+
+    <!-- SNAPSHOT KPIs -->
+    <section class="section" aria-labelledby="snapshot">
+      <h2 id="snapshot">Today’s Snapshot</h2>
+      <p class="sub">Numbers are placeholders (wire your data or update manually).</p>
+      <div class="grid cols-3">
+        <div class="card">
+          <div class="muted">Current U.S. Debt</div>
+          <div class="kpi">$37,000,000,000,000</div>
+          <div class="note">Auto-updating widget can be added later.</div>
+        </div>
+        <div class="card">
+          <div class="muted">Unlocked on Solana</div>
+          <div class="kpi">370 / 1,000</div>
+          <div class="note">1 NFT per +$100B.</div>
+        </div>
+        <div class="card">
+          <div class="muted">Next Unlock</div>
+          <div class="kpi">+ $100,000,000,000</div>
+          <div class="note">Releases Slice #371.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- HOW IT WORKS -->
+    <section class="section" id="how" aria-labelledby="how-title">
+      <h2 id="how-title">How It Works</h2>
+      <p class="sub">Simple rules, transparent supply, on-chain forever.</p>
+      <div class="grid cols-3">
+        <div class="card">
+          <h3>Solana Only (for now)</h3>
+          <p>We’re launching on Solana with a hard cap of <strong>1,000</strong> NFTs. Each represents a <strong>$100B</strong> debt milestone.</p>
+        </div>
+        <div class="card">
+          <h3>Unlock Logic</h3>
+          <p>As official U.S. debt increases, the next slice is released from the treasury wallet. New drops are announced with on-chain proofs.</p>
+        </div>
+        <div class="card">
+          <h3>Royalties</h3>
+          <p>Creator fees are set to <strong>5–10%</strong> in metadata and honored where marketplaces enforce royalties.</p>
+        </div>
+      </div>
+      <div class="grid cols-2" style="margin-top:16px">
+        <div class="card">
+          <h3>Per-Slice Education</h3>
+          <p>Each slice will have its own page (e.g., <code>/slices/370</code>) with CPI, rates, curated headlines, and a short historical note for that period.</p>
+        </div>
+        <div class="card">
+          <h3>BTC & BNB (Later)</h3>
+          <p>Bitcoin will host <strong>100 “Trillion Slices”</strong> (1 per $1T). BNB will mirror Solana’s $100B slices. Both live on dedicated pages separate from this Solana collection.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- COLLECTIONS (GROUPED BY PRICE TIERS) -->
+    <section class="section" id="tiers" aria-labelledby="tiers-title">
+      <h2 id="tiers-title">Collections by Mint Tier (Solana)</h2>
+      <p class="sub">Tiered pricing by range of slice numbers. Replace the placeholders with your mint links and slice pages.</p>
+
+      <!-- Tier $100: #001–#100 -->
+      <details class="tier" open>
+        <summary>
+          <span><strong>$100 Tier</strong> <span class="range">— Slices #001–#100</span></span>
+          <span class="price">$100</span>
+        </summary>
+        <div class="body">
+          <div class="chips">
+            <a class="chip" href="/slices/001">Slice #001 <span class="tiny">— $0.1T</span></a>
+            <a class="chip" href="/slices/010">Slice #010</a>
+            <a class="chip" href="/slices/050">Slice #050</a>
+            <a class="chip locked" href="#">Slice #088 — Locked</a>
+            <span class="chip locked">Slice #099 — Locked</span>
+            <a class="chip" href="/slices/100">Slice #100</a>
+          </div>
+          <p class="note">Add the rest as you publish. Mark unreleased as “Locked”.</p>
+        </div>
+      </details>
+
+      <!-- Tier $200: #101–#200 -->
+      <details class="tier">
+        <summary>
+          <span><strong>$200 Tier</strong> <span class="range">— Slices #101–#200</span></span>
+          <span class="price">$200</span>
+        </summary>
+        <div class="body">
+          <div class="chips">
+            <a class="chip" href="/slices/101">Slice #101</a>
+            <a class="chip" href="/slices/150">Slice #150</a>
+            <span class="chip locked">Slice #175 — Locked</span>
+            <a class="chip" href="/slices/200">Slice #200</a>
+          </div>
+        </div>
+      </details>
+
+      <!-- Tier $300: #201–#300 -->
+      <details class="tier">
+        <summary>
+          <span><strong>$300 Tier</strong> <span class="range">— Slices #201–#300</span></span>
+          <span class="price">$300</span>
+        </summary>
+        <div class="body">
+          <div class="chips">
+            <a class="chip" href="/slices/201">Slice #201</a>
+            <a class="chip" href="/slices/250">Slice #250</a>
+            <a class="chip" href="/slices/300">Slice #300</a>
+          </div>
+        </div>
+      </details>
+
+      <!-- Continue pattern up to $1,000 -->
+      <details class="tier">
+        <summary>
+          <span><strong>$400 Tier</strong> <span class="range">— Slices #301–#400</span></span>
+          <span class="price">$400</span>
+        </summary>
+        <div class="body"><div class="chips"><span class="chip locked">Placeholders</span></div></div>
+      </details>
+
+      <details class="tier">
+        <summary>
+          <span><strong>$500 Tier</strong> <span class="range">— Slices #401–#500</span></span>
+          <span class="price">$500</span>
+        </summary>
+        <div class="body"><div class="chips"><span class="chip locked">Placeholders</span></div></div>
+      </details>
+
+      <details class="tier">
+        <summary>
+          <span><strong>$600 Tier</strong> <span class="range">— Slices #501–#600</span></span>
+          <span class="price">$600</span>
+        </summary>
+        <div class="body"><div class="chips"><span class="chip locked">Placeholders</span></div></div>
+      </details>
+
+      <details class="tier">
+        <summary>
+          <span><strong>$700 Tier</strong> <span class="range">— Slices #601–#700</span></span>
+          <span class="price">$700</span>
+        </summary>
+        <div class="body"><div class="chips"><span class="chip locked">Placeholders</span></div></div>
+      </details>
+
+      <details class="tier">
+        <summary>
+          <span><strong>$800 Tier</strong> <span class="range">— Slices #701–#800</span></span>
+          <span class="price">$800</span>
+        </summary>
+        <div class="body"><div class="chips"><span class="chip locked">Placeholders</span></div></div>
+      </details>
+
+      <details class="tier">
+        <summary>
+          <span><strong>$900 Tier</strong> <span class="range">— Slices #801–#900</span></span>
+          <span class="price">$900</span>
+        </summary>
+        <div class="body"><div class="chips"><span class="chip locked">Placeholders</span></div></div>
+      </details>
+
+      <details class="tier">
+        <summary>
+          <span><strong>$1,000 Tier</strong> <span class="range">— Slices #901–#1000</span></span>
+          <span class="price">$1,000</span>
+        </summary>
+        <div class="body"><div class="chips"><span class="chip locked">Placeholders</span></div></div>
+      </details>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section" id="faq" aria-labelledby="faq-title">
+      <h2 id="faq-title">FAQ</h2>
+      <div class="grid cols-2">
+        <div class="card">
+          <h3>Is this an investment?</h3>
+          <p>No. NFTrillions is a <strong>satirical digital art/collectible</strong> project. There’s no promise of profit or yield.</p>
+        </div>
+        <div class="card">
+          <h3>How are new slices released?</h3>
+          <p>One new Solana NFT per +$100B in U.S. debt. We publish on-chain proofs and update a public manifest.</p>
+        </div>
+        <div class="card">
+          <h3>Where can I trade?</h3>
+          <p>Any Solana marketplace (e.g., Magic Eden, Tensor). Royalties are set in metadata and honored where enforced.</p>
+        </div>
+        <div class="card">
+          <h3>What about Bitcoin & BNB?</h3>
+          <p>Bitcoin will host 100 “Trillion Slices” (1 per $1T). BNB will mirror Solana’s $100B slices. Each will live on its own page later.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER / TRANSPARENCY -->
+    <footer>
+      <div class="footgrid">
+        <div>
+          <div class="brand">NFTrillions</div>
+          <p class="small">© 2025 NFTrillions. Satirical digital art on Solana. Not financial advice. Not affiliated with any government or institution.</p>
+          <p class="small">Creator (Solana): <span class="pill">SoLAddR3sS…</span> &nbsp; Treasury: <span class="pill">SoLTreasury…</span> &nbsp; Manifest: <a href="/manifest">/manifest</a></p>
+        </div>
+        <div>
+          <div class="small"><strong>Pages</strong></div>
+          <p class="small"><a href="#tiers">Collections</a> · <a href="#how">How It Works</a> · <a href="#faq">FAQ</a> · <a href="/terms">Terms</a> · <a href="/license">License</a></p>
+        </div>
+        <div>
+          <div class="small"><strong>Notes</strong></div>
+          <p class="small">Bitcoin “Trillion Slices” and BNB mirrors will be introduced on separate pages after Solana launch.</p>
+        </div>
+      </div>
+    </footer>
+  </div>
+</body>
+</html>
+
