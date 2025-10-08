@@ -2,9 +2,11 @@
 
 ## Overview
 
-NFTrillions is a satirical, educational NFT marketplace built on Solana that chronicles the rise of U.S. national debt. The platform creates 1,000 unique NFTs, each representing a $100 billion debt milestone. The application features real-time debt tracking, tiered pricing, and historical context for each debt slice.
+NFTrillions is a satirical, educational NFT marketplace built on Solana that chronicles the rise of U.S. national debt. The platform creates 1,000 unique NFTs, each representing a $100 billion debt milestone. The application features real-time debt tracking from official U.S. Treasury APIs, tiered pricing, and historical context for each debt slice.
 
 This is a full-stack web application with a React frontend and Express backend, designed to provide an engaging way to visualize and understand the scale of national debt through blockchain technology.
+
+**Live Debt Data**: The application fetches real U.S. debt data from official Treasury sources with a robust fallback system and hourly caching to minimize API requests.
 
 ## User Preferences
 
@@ -45,6 +47,7 @@ Preferred communication style: Simple, everyday language.
 - `/api/slices/search` - Search slices
 - `/api/slices/filter` - Filter slices by criteria
 - `/api/debt-stats` - Get current debt statistics
+- `/api/debt/current` - Get real-time U.S. debt from Treasury APIs (with caching)
 
 **Development vs Production**:
 - Development: Vite middleware integrated for HMR and fast refresh
@@ -125,13 +128,35 @@ Preferred communication style: Simple, everyday language.
 **Session Management**:
 - connect-pg-simple for PostgreSQL-backed sessions (when authentication is implemented)
 
+### Debt Data Integration
+
+**Real-Time Debt API** (`/api/debt/current`):
+- **Primary Source**: U.S. Treasury FiscalData API - Official daily debt data
+  - Endpoint: `https://api.fiscaldata.treasury.gov/services/api/fiscal_service/v2/accounting/od/debt_to_penny`
+- **Fallback Source**: TreasuryDirect Legacy API
+  - Endpoint: `https://www.treasurydirect.gov/NP_WS/debt/current`
+- **Caching Strategy**: 1-hour in-memory cache to minimize API requests
+- **Error Handling**: Three-tier fallback (FiscalData → TreasuryDirect → Cached/Hardcoded value)
+- **Response Format**: Returns `{ amount, formatted, cached, cacheAge, source }`
+
+**Frontend Counter Animation**:
+- Fetches real debt from `/api/debt/current` hourly
+- Uses base API value to seed client-side counter
+- Increments $1M per second for visual engagement
+- Maintains smooth animation while showing accurate data
+
+**Current Debt Status** (as of latest update):
+- Total U.S. Debt: ~$37.84 trillion
+- Minted Slices: 378 (378 × $100B = $37.8T)
+- Next Unlock: $37.9 trillion
+
 ### Application Flow
 
-1. User visits home page with live debt counter
-2. Real-time debt updates every second via client-side simulation
+1. User visits home page with live debt counter (powered by real Treasury data)
+2. Real-time debt updates every second via client-side animation based on API data
 3. Collections browser shows slices grouped by tier with filtering/search
 4. Slice detail pages show historical context, economic data, and NFT metadata
-5. Future: Wallet connection enables minting/purchasing of unlocked slices
+5. Owner mints NFTs as debt milestones are reached (users view only)
 
 ### Key Architectural Decisions
 
