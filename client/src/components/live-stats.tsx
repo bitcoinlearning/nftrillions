@@ -91,7 +91,7 @@ export default function LiveStats() {
                 </div>
                 <div className="text-xs text-muted-foreground">
                   <a 
-                    href="https://api.fiscaldata.treasury.gov/services/api/fiscal_service/v2/accounting/od/debt_to_penny" 
+                    href="https://fiscaldata.treasury.gov/datasets/debt-to-the-penny/debt-to-the-penny" 
                     target="_blank" 
                     rel="noopener noreferrer"
                     className="hover:text-primary transition-colors underline"
