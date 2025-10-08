@@ -4,8 +4,8 @@ import { debtAPI } from '@/lib/debt-api';
 export function useDebtCounter(initialValue?: string) {
   const [debt, setDebt] = useState(initialValue || '$37,000,000,000,000');
 
-  // Update debt when initialValue changes (from API)
   useEffect(() => {
+    // Update debt when initialValue changes (from API)
     if (initialValue) {
       setDebt(initialValue);
       
@@ -15,15 +15,14 @@ export function useDebtCounter(initialValue?: string) {
         debtAPI.setBaseDebt(numericValue);
       }
     }
-  }, [initialValue]);
 
-  useEffect(() => {
+    // Subscribe to debt updates
     const unsubscribe = debtAPI.subscribeToUpdates((newDebt) => {
       setDebt(newDebt);
     });
 
     return unsubscribe;
-  }, []);
+  }, [initialValue]);
 
   return debt;
 }
