@@ -3,13 +3,29 @@ import { useDebtCounter } from "@/hooks/use-debt-counter";
 import { TrendingUp, Lock, Clock } from "lucide-react";
 import type { DebtStats } from "@shared/schema";
 
+interface DebtApiResponse {
+  amount: number;
+  formatted: string;
+  cached: boolean;
+  cacheAge: number;
+  source: string;
+}
+
 export default function LiveStats() {
+  // Fetch real debt data from Treasury APIs with caching
+  const { data: realDebt } = useQuery<DebtApiResponse>({
+    queryKey: ["/api/debt/current"],
+    refetchInterval: 60 * 60 * 1000, // Refetch every hour
+    staleTime: 60 * 60 * 1000, // Consider data stale after 1 hour
+  });
+
   const { data: debtStats, isLoading } = useQuery<DebtStats>({
     queryKey: ["/api/debt-stats"],
     refetchInterval: 60000, // Refetch every minute
   });
 
-  const animatedDebt = useDebtCounter(debtStats?.currentDebt || "$37,000,000,000,000");
+  // Use real debt data as base for counter, fallback to debtStats
+  const animatedDebt = useDebtCounter(realDebt?.formatted || debtStats?.currentDebt || "$37,840,931,900,999");
 
   if (isLoading || !debtStats) {
     return (
