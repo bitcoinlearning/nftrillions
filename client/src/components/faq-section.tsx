@@ -30,7 +30,7 @@ export default function FaqSection() {
     {
       id: "royalties",
       question: "How are royalties handled?",
-      answer: "Creator fees are set at 5-10% in the NFT metadata and are honored on marketplaces that enforce royalties. These fees support ongoing development, data updates, and the creation of educational content. We believe in sustainable creator compensation while respecting marketplace policies and collector preferences."
+      answer: "Creator royalties are set at 5 – 10% in the NFT metadata. These royalties are automatically routed to the creator wallet whenever a secondary sale occurs on marketplaces that enforce royalty payments.\n\nAll creator fees are paid directly to the creator wallet and may be used entirely at the creator's discretion. This can include—but is not limited to—funding new art or development, covering infrastructure costs, producing educational content, supporting community events, or simply personal use by the creator. There are no guarantees that royalties will be used for any specific purpose.\n\nWe include this transparency because we believe creators should be fairly compensated for their work, and buyers should understand exactly how royalties are handled. These payments are not investments, they do not entitle holders to revenue or profits, and they do not create any financial relationship between the creator and collectors."
     }
   ];
 
@@ -56,7 +56,11 @@ export default function FaqSection() {
                 {faq.question}
               </AccordionTrigger>
               <AccordionContent className="pb-5 pt-2 text-muted-foreground leading-relaxed border-t border-white/10">
-                {faq.answer}
+                {faq.answer.split('\n\n').map((paragraph, index) => (
+                  <p key={index} className={index > 0 ? 'mt-4' : ''}>
+                    {paragraph}
+                  </p>
+                ))}
               </AccordionContent>
             </AccordionItem>
           ))}

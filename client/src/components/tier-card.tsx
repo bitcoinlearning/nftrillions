@@ -11,7 +11,7 @@ interface TierCardProps {
 }
 
 export default function TierCard({ tier, slices, price, range }: TierCardProps) {
-  const [isExpanded, setIsExpanded] = useState(tier === 1);
+  const [isExpanded, setIsExpanded] = useState(false);
 
   const unlockedSlices = slices.filter(slice => slice.isUnlocked);
   const lockedSlices = slices.filter(slice => !slice.isUnlocked);
