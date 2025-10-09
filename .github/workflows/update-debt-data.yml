@@ -42,22 +42,14 @@ jobs:
           # Stop backend
           kill $BACKEND_PID || true
       
-      - name: Build static site
-        run: npx vite build --config vite.config.pages.ts
+      - name: Build static site for SiteGround
+        run: npx vite build --config vite.config.siteground.ts
       
-      - name: Deploy to GitHub Pages (optional)
-        uses: peaceiris/actions-gh-pages@v3
+      - name: Deploy to SiteGround via FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist/public
-          publish_branch: gh-pages
-        
-      # Optional: Add FTP deployment to SiteGround
-      # - name: Deploy to SiteGround via FTP
-      #   uses: SamKirkland/FTP-Deploy-Action@v4.3.4
-      #   with:
-      #     server: ${{ secrets.FTP_SERVER }}
-      #     username: ${{ secrets.FTP_USERNAME }}
-      #     password: ${{ secrets.FTP_PASSWORD }}
-      #     local-dir: ./dist/public/
-      #     server-dir: /public_html/
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          local-dir: ./dist/public/
+          server-dir: ${{ secrets.FTP_DIRECTORY }}
