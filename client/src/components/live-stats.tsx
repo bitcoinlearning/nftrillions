@@ -130,15 +130,15 @@ export default function LiveStats() {
               </div>
             </div>
 
-            {/* Unlocked Slices and Next Unlock - Side by Side */}
+            {/* Released NFTs and Next Release - Side by Side */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {/* Unlocked Slices */}
+              {/* Released NFTs */}
               <div className="relative group">
                 <div className="absolute inset-0 bg-gradient-to-r from-secondary to-accent rounded-2xl opacity-0 group-hover:opacity-20 blur transition-opacity duration-300"></div>
                 <div className="relative glass rounded-2xl p-6 border border-white/10 transition-all-300 group-hover:border-secondary/50" data-testid="stat-unlocked-slices">
                   <div className="text-muted-foreground text-sm font-medium mb-2 flex items-center gap-2">
                     <Lock className="w-5 h-5" />
-                    Unlocked on Solana
+                    Released on Solana
                   </div>
                   <div className="font-mono text-2xl sm:text-3xl lg:text-4xl font-bold gradient-text-alt mb-2" data-testid="unlocked-count">
                     {unlockedSlices} / 1,000
@@ -147,13 +147,13 @@ export default function LiveStats() {
                 </div>
               </div>
 
-              {/* Next Unlock */}
+              {/* Next Release */}
               <div className="relative group">
                 <div className="absolute inset-0 bg-gradient-to-r from-accent to-primary rounded-2xl opacity-0 group-hover:opacity-20 blur transition-opacity duration-300"></div>
                 <div className="relative glass rounded-2xl p-6 border border-white/10 transition-all-300 group-hover:border-accent/50" data-testid="stat-next-unlock">
                   <div className="text-muted-foreground text-sm font-medium mb-2 flex items-center gap-2">
                     <Clock className="w-5 h-5" />
-                    Next Unlock At
+                    Next Release At
                   </div>
                   <div className="font-mono text-2xl sm:text-3xl lg:text-4xl font-bold gradient-text mb-2" data-testid="next-unlock-amount">
                     {nextUnlockFormatted}

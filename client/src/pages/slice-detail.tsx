@@ -97,7 +97,7 @@ export default function SliceDetail() {
           <div className="max-w-4xl mx-auto text-center">
             <h1 className="font-display text-3xl font-bold mb-4">NFT Not Found</h1>
             <p className="text-muted-foreground mb-8">
-              The NFT you're looking for doesn't exist or hasn't been unlocked yet.
+              The NFT you're looking for doesn't exist or hasn't been released yet.
             </p>
             <Button asChild>
               <a href="/">
@@ -197,19 +197,24 @@ export default function SliceDetail() {
               <div className="space-y-2">
                 <div className="flex justify-between">
                   <span className="text-muted-foreground">Tier:</span>
-                  <span className="font-mono font-bold">${slice.tier}00</span>
+                  <span className="font-mono font-bold">{slice.tier}00</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-muted-foreground">Mint Price:</span>
+                  <span className="text-muted-foreground">Minted Value:</span>
                   <span className="font-mono font-bold">${slice.mintPrice}</span>
                 </div>
                 <div className="flex justify-between">
                   <span className="text-muted-foreground">Status:</span>
                   <span className={`font-semibold ${slice.isUnlocked ? 'text-primary' : 'text-muted-foreground'}`}>
-                    {slice.isUnlocked ? 'Unlocked' : 'Locked'}
+                    {slice.isUnlocked ? 'Released' : 'Locked'}
                   </span>
                 </div>
               </div>
+              {!slice.isUnlocked && (
+                <p className="text-xs text-muted-foreground mt-3 pt-3 border-t border-white/10" data-testid="locked-message">
+                  This NFT hasn't been released yet. It will be automatically released when U.S. debt reaches this milestone.
+                </p>
+              )}
             </div>
           </div>
 

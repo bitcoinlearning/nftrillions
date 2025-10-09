@@ -100,16 +100,16 @@ export default function CollectionsBrowser() {
                   </SelectTrigger>
                   <SelectContent className="glass-strong border border-white/20">
                     <SelectItem value="all">All Tiers</SelectItem>
-                    <SelectItem value="1">$100 Tier</SelectItem>
-                    <SelectItem value="2">$200 Tier</SelectItem>
-                    <SelectItem value="3">$300 Tier</SelectItem>
-                    <SelectItem value="4">$400 Tier</SelectItem>
-                    <SelectItem value="5">$500 Tier</SelectItem>
-                    <SelectItem value="6">$600 Tier</SelectItem>
-                    <SelectItem value="7">$700 Tier</SelectItem>
-                    <SelectItem value="8">$800 Tier</SelectItem>
-                    <SelectItem value="9">$900 Tier</SelectItem>
-                    <SelectItem value="10">$1000 Tier</SelectItem>
+                    <SelectItem value="1">100 Tier</SelectItem>
+                    <SelectItem value="2">200 Tier</SelectItem>
+                    <SelectItem value="3">300 Tier</SelectItem>
+                    <SelectItem value="4">400 Tier</SelectItem>
+                    <SelectItem value="5">500 Tier</SelectItem>
+                    <SelectItem value="6">600 Tier</SelectItem>
+                    <SelectItem value="7">700 Tier</SelectItem>
+                    <SelectItem value="8">800 Tier</SelectItem>
+                    <SelectItem value="9">900 Tier</SelectItem>
+                    <SelectItem value="10">1000 Tier</SelectItem>
                   </SelectContent>
                 </Select>
 
@@ -122,7 +122,7 @@ export default function CollectionsBrowser() {
                   </SelectTrigger>
                   <SelectContent className="glass-strong border border-white/20">
                     <SelectItem value="all">All Status</SelectItem>
-                    <SelectItem value="true">Unlocked</SelectItem>
+                    <SelectItem value="true">Released</SelectItem>
                     <SelectItem value="false">Locked</SelectItem>
                   </SelectContent>
                 </Select>

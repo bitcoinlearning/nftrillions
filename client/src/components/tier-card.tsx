@@ -40,7 +40,7 @@ export default function TierCard({ tier, slices, price, range }: TierCardProps) 
         className="w-full px-6 py-5 flex items-center justify-between text-left hover:bg-white/5 transition-colors"
         onClick={() => setIsExpanded(!isExpanded)}
         aria-expanded={isExpanded}
-        aria-label={`Toggle $${price} tier details`}
+        aria-label={`Toggle ${price} tier details`}
         data-testid={`tier-toggle-${tier}`}
       >
         <div className="flex items-center gap-4">
@@ -48,7 +48,7 @@ export default function TierCard({ tier, slices, price, range }: TierCardProps) 
             {tier}
           </div>
           <div>
-            <h3 className="font-display text-xl font-bold">${price} Tier</h3>
+            <h3 className="font-display text-xl font-bold">{price} Tier</h3>
             <p className="text-sm text-muted-foreground">{range}</p>
           </div>
         </div>
@@ -57,7 +57,7 @@ export default function TierCard({ tier, slices, price, range }: TierCardProps) 
             <div className="font-mono text-2xl font-bold gradient-text" data-testid={`tier-price-${tier}`}>
               ${price}
             </div>
-            <div className="text-xs text-muted-foreground">Mint Price</div>
+            <div className="text-xs text-muted-foreground">Minted Value</div>
           </div>
           <ChevronDown 
             className={`w-6 h-6 text-muted-foreground transition-transform ${
@@ -108,7 +108,7 @@ export default function TierCard({ tier, slices, price, range }: TierCardProps) 
               <p className="text-xs text-muted-foreground">
                 {lockedSlices.length > 0 
                   ? "Additional NFTs will be revealed as debt milestones are reached"
-                  : "All NFTs in this tier are currently unlocked"
+                  : "All NFTs in this tier are currently released"
                 }
               </p>
             </>
