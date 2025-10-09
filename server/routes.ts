@@ -77,51 +77,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // Get slice by number
-  app.get("/api/slices/:number", async (req, res) => {
-    try {
-      const number = parseInt(req.params.number);
-      if (isNaN(number)) {
-        return res.status(400).json({ error: "Invalid slice number" });
-      }
-
-      const slice = await storage.getSliceByNumber(number);
-      if (!slice) {
-        return res.status(404).json({ error: "Slice not found" });
-      }
-
-      res.json(slice);
-    } catch (error) {
-      res.status(500).json({ error: "Failed to fetch slice" });
-    }
-  });
-
-  // Get slices by tier
-  app.get("/api/slices/tier/:tier", async (req, res) => {
-    try {
-      const tier = parseInt(req.params.tier);
-      if (isNaN(tier)) {
-        return res.status(400).json({ error: "Invalid tier number" });
-      }
-
-      const slices = await storage.getSlicesByTier(tier);
-      res.json(slices);
-    } catch (error) {
-      res.status(500).json({ error: "Failed to fetch slices by tier" });
-    }
-  });
-
-  // Get unlocked slices
-  app.get("/api/slices/unlocked", async (req, res) => {
-    try {
-      const slices = await storage.getUnlockedSlices();
-      res.json(slices);
-    } catch (error) {
-      res.status(500).json({ error: "Failed to fetch unlocked slices" });
-    }
-  });
-
-  // Search slices
+  // Search slices (must come before /:number route)
   app.get("/api/slices/search", async (req, res) => {
     try {
       const { q } = req.query;
@@ -136,7 +92,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // Filter slices
+  // Filter slices (must come before /:number route)
   app.get("/api/slices/filter", async (req, res) => {
     try {
       const { tier, unlocked } = req.query;
@@ -158,6 +114,50 @@ export async function registerRoutes(app: Express): Promise<Server> {
       res.json(slices);
     } catch (error) {
       res.status(500).json({ error: "Failed to filter slices" });
+    }
+  });
+
+  // Get slices by tier (must come before /:number route)
+  app.get("/api/slices/tier/:tier", async (req, res) => {
+    try {
+      const tier = parseInt(req.params.tier);
+      if (isNaN(tier)) {
+        return res.status(400).json({ error: "Invalid tier number" });
+      }
+
+      const slices = await storage.getSlicesByTier(tier);
+      res.json(slices);
+    } catch (error) {
+      res.status(500).json({ error: "Failed to fetch slices by tier" });
+    }
+  });
+
+  // Get unlocked slices (must come before /:number route)
+  app.get("/api/slices/unlocked", async (req, res) => {
+    try {
+      const slices = await storage.getUnlockedSlices();
+      res.json(slices);
+    } catch (error) {
+      res.status(500).json({ error: "Failed to fetch unlocked slices" });
+    }
+  });
+
+  // Get slice by number (must come AFTER specific routes)
+  app.get("/api/slices/:number", async (req, res) => {
+    try {
+      const number = parseInt(req.params.number);
+      if (isNaN(number)) {
+        return res.status(400).json({ error: "Invalid slice number" });
+      }
+
+      const slice = await storage.getSliceByNumber(number);
+      if (!slice) {
+        return res.status(404).json({ error: "Slice not found" });
+      }
+
+      res.json(slice);
+    } catch (error) {
+      res.status(500).json({ error: "Failed to fetch slice" });
     }
   });
 
