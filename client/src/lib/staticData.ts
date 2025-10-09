@@ -10,8 +10,8 @@ export async function loadStaticSlices(): Promise<Slice[]> {
   }
   
   const baseUrl = import.meta.env.BASE_URL || '/';
-  // Use relative path instead of window.location for SSR compatibility
-  const url = `${baseUrl}slices.json`.replace(/\/+/g, '/');
+  // Ensure proper slash between baseUrl and filename
+  const url = `${baseUrl.endsWith('/') ? baseUrl : baseUrl + '/'}slices.json`;
   const response = await fetch(url);
   if (!response.ok) {
     throw new Error('Failed to load slices data');
@@ -27,8 +27,8 @@ export async function loadStaticStats(): Promise<DebtStats> {
   }
   
   const baseUrl = import.meta.env.BASE_URL || '/';
-  // Use relative path instead of window.location for SSR compatibility
-  const url = `${baseUrl}stats.json`.replace(/\/+/g, '/');
+  // Ensure proper slash between baseUrl and filename
+  const url = `${baseUrl.endsWith('/') ? baseUrl : baseUrl + '/'}stats.json`;
   const response = await fetch(url);
   if (!response.ok) {
     throw new Error('Failed to load stats data');
