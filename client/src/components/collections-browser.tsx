@@ -86,7 +86,7 @@ export default function CollectionsBrowser() {
                     placeholder="Search by slice number or range..." 
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
-                    className="pl-12 pr-4 py-3 bg-background/50 border border-white/10 rounded-xl text-foreground placeholder:text-muted-foreground focus:border-primary transition-colors"
+                    className="pl-12 pr-4 py-3 bg-background/80 border border-white/10 rounded-xl text-white placeholder:text-muted-foreground focus:border-primary transition-colors"
                     data-testid="search-input"
                   />
                 </div>
