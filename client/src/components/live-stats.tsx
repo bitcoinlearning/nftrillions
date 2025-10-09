@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 
 export default function LiveStats() {
   const [realDebtAmount, setRealDebtAmount] = useState<number | null>(null);
+  const [currentDebtNumeric, setCurrentDebtNumeric] = useState<number>(37840931900999);
 
   const { data: debtStats, isLoading } = useQuery<DebtStats>({
     queryKey: ["/api/debt-stats"],
@@ -20,6 +21,9 @@ export default function LiveStats() {
     debtAPI.fetchRealDebt().then((amount) => {
       if (mounted) {
         setRealDebtAmount(amount);
+        // Seed both the counter base and the numeric state
+        debtAPI.setBaseDebt(amount);
+        setCurrentDebtNumeric(amount);
       }
     });
 
@@ -28,6 +32,9 @@ export default function LiveStats() {
       debtAPI.fetchRealDebt().then((amount) => {
         if (mounted) {
           setRealDebtAmount(amount);
+          // Update both the counter base and the numeric state
+          debtAPI.setBaseDebt(amount);
+          setCurrentDebtNumeric(amount);
         }
       });
     }, 4 * 60 * 60 * 1000);
@@ -38,9 +45,28 @@ export default function LiveStats() {
     };
   }, []);
 
+  // Subscribe to numeric debt updates
+  useEffect(() => {
+    // Get immediate current value
+    setCurrentDebtNumeric(debtAPI.getCurrentDebtNumeric());
+    
+    // Subscribe to future updates
+    const unsubscribe = debtAPI.subscribeToNumericUpdates((debt) => {
+      setCurrentDebtNumeric(debt);
+    });
+
+    return unsubscribe;
+  }, []);
+
   // Use real debt data as base for counter
   const formattedDebt = realDebtAmount ? '$' + realDebtAmount.toLocaleString('en-US') : debtStats?.currentDebt || "$37,840,931,900,999";
   const animatedDebt = useDebtCounter(formattedDebt);
+
+  // Calculate live stats from numeric debt value
+  const unlockedSlices = Math.floor(currentDebtNumeric / 100000000000); // Each slice = $100B
+  const nextSliceNumber = unlockedSlices + 1;
+  const nextUnlockAmount = nextSliceNumber * 100000000000;
+  const nextUnlockFormatted = '$' + nextUnlockAmount.toLocaleString('en-US');
 
   if (isLoading || !debtStats) {
     return (
@@ -114,8 +140,8 @@ export default function LiveStats() {
                     <Lock className="w-5 h-5" />
                     Unlocked on Solana
                   </div>
-                  <div className="font-mono text-2xl sm:text-3xl lg:text-4xl font-bold gradient-text-alt mb-2">
-                    {debtStats.unlockedSlices} / 1,000
+                  <div className="font-mono text-2xl sm:text-3xl lg:text-4xl font-bold gradient-text-alt mb-2" data-testid="unlocked-count">
+                    {unlockedSlices} / 1,000
                   </div>
                   <div className="text-xs text-muted-foreground">1 NFT per +$100B</div>
                 </div>
@@ -129,11 +155,11 @@ export default function LiveStats() {
                     <Clock className="w-5 h-5" />
                     Next Unlock At
                   </div>
-                  <div className="font-mono text-2xl sm:text-3xl lg:text-4xl font-bold gradient-text mb-2">
-                    {debtStats.nextUnlockAt}
+                  <div className="font-mono text-2xl sm:text-3xl lg:text-4xl font-bold gradient-text mb-2" data-testid="next-unlock-amount">
+                    {nextUnlockFormatted}
                   </div>
-                  <div className="text-xs text-muted-foreground">
-                    Releases Slice #{debtStats.unlockedSlices + 1}
+                  <div className="text-xs text-muted-foreground" data-testid="next-slice-number">
+                    Releases Slice #{nextSliceNumber}
                   </div>
                 </div>
               </div>

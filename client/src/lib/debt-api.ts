@@ -124,6 +124,12 @@ export class DebtAPI {
     return this.formatCurrency(currentDebt);
   }
 
+  getCurrentDebtNumeric(): number {
+    const now = Date.now();
+    const secondsElapsed = Math.floor((now - this.startTime) / this.intervalMs);
+    return this.baseDebt + (secondsElapsed * this.increment);
+  }
+
   private formatCurrency(amount: number): string {
     return '$' + amount.toLocaleString('en-US');
   }
@@ -131,6 +137,14 @@ export class DebtAPI {
   subscribeToUpdates(callback: (debt: string) => void): () => void {
     const interval = setInterval(() => {
       callback(this.getCurrentDebt());
+    }, this.intervalMs);
+
+    return () => clearInterval(interval);
+  }
+
+  subscribeToNumericUpdates(callback: (debt: number) => void): () => void {
+    const interval = setInterval(() => {
+      callback(this.getCurrentDebtNumeric());
     }, this.intervalMs);
 
     return () => clearInterval(interval);
