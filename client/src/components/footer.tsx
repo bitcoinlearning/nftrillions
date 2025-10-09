@@ -85,8 +85,16 @@ export default function Footer() {
 
         {/* Disclaimer */}
         <div className="mt-8 pt-8 border-t border-white/10">
-          <p className="text-xs text-muted-foreground leading-relaxed max-w-4xl" data-testid="text-footer-disclaimer">
-            <strong>Important:</strong> NFTrillions is a satirical, educational digital art project. It is not a financial product, investment, or security. NFTs sold or displayed on this website have no expectation of profit and do not represent ownership in any asset, entity, or government instrument. Data is sourced from public information such as U.S. Treasury APIs and is provided "as is" for educational and artistic purposes only. By using this website, you acknowledge that NFTrillions and its creators are not affiliated with any government agency, financial institution, or investment entity.
+          <p className="text-xs text-muted-foreground leading-relaxed max-w-4xl space-y-3" data-testid="text-footer-disclaimer">
+            <span className="block">
+              <strong>Important:</strong> NFTrillions is a satirical, educational digital art project. It is not a financial product, investment, or security. NFTs sold or displayed on this website have no expectation of profit and do not represent ownership in any asset, entity, or government instrument.
+            </span>
+            <span className="block">
+              Data is sourced from public information such as U.S. Treasury APIs and is provided "as is" for educational and artistic purposes only. Secondary-market prices are set solely by collectors and independent marketplaces. NFTrillions does not guarantee liquidity or influence resale values.
+            </span>
+            <span className="block">
+              Nothing on this site constitutes financial, investment, legal, or tax advice. NFTrillions and its creators are not affiliated with any government agency, financial institution, or investment entity.
+            </span>
           </p>
         </div>
 
