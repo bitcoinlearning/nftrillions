@@ -18,14 +18,20 @@ export default function GlassmorphicNav() {
   const handleAnchorClick = (href: string) => {
     setIsMenuOpen(false);
     if (href.startsWith('#')) {
-      const element = document.querySelector(href);
-      if (element) {
-        const navHeight = 80;
-        const targetPosition = element.getBoundingClientRect().top + window.scrollY - navHeight;
-        window.scrollTo({
-          top: targetPosition,
-          behavior: 'smooth'
-        });
+      // Check if we're on the home page
+      if (window.location.pathname === '/') {
+        const element = document.querySelector(href);
+        if (element) {
+          const navHeight = 80;
+          const targetPosition = element.getBoundingClientRect().top + window.scrollY - navHeight;
+          window.scrollTo({
+            top: targetPosition,
+            behavior: 'smooth'
+          });
+        }
+      } else {
+        // Navigate to home page with hash
+        window.location.href = `/${href}`;
       }
     }
   };

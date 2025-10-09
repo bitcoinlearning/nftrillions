@@ -76,7 +76,7 @@ export default function TierCard({ tier, slices, price, range }: TierCardProps) 
                 {unlockedSlices.map((slice) => (
                   <a 
                     key={slice.id}
-                    href={`/slices/${slice.number}`} 
+                    href={`/nft/${slice.number}`} 
                     className={`slice-chip glass rounded-xl p-4 border ${getBorderClass(tier)} transition-all text-center group`}
                     data-testid={`slice-chip-${slice.number}`}
                   >

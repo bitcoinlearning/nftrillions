@@ -130,7 +130,7 @@ export default function SliceDetail() {
             className="mb-6 glass hover:glass-strong"
             data-testid="button-back-home"
           >
-            <a href="/">
+            <a href="/#collections">
               <ArrowLeft className="w-4 h-4 mr-2" />
               Back to Collections
             </a>
