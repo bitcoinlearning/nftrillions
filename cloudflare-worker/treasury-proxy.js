@@ -31,7 +31,9 @@ async function handleRequest(request) {
     return new Response('Method not allowed', { status: 405 });
   }
 
-  const cacheKey = 'treasury-debt-data';
+  // Create a cache key using the request URL
+  const cacheUrl = new URL(request.url);
+  const cacheKey = new Request(cacheUrl.toString(), request);
   const cache = caches.default;
 
   // Try to get from Cloudflare cache
