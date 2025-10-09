@@ -44,10 +44,13 @@ export class DebtAPI {
     }
 
     try {
-      // Use the hybrid backend/static endpoint (works in both dev and static mode)
-      // In dev mode: backend proxies Treasury APIs
-      // In static mode: falls back to exported JSON data
-      const response = await this.fetchWithTimeout('/api/debt/current', 8000);
+      // Priority 1: Cloudflare Worker (if configured) - works on static hosting with 12-hour cache
+      // Priority 2: Hybrid backend/static endpoint - works in dev mode or falls back to static JSON
+      const workerUrl = import.meta.env.VITE_CLOUDFLARE_WORKER_URL;
+      const endpoint = workerUrl || '/api/debt/current';
+      
+      console.log('[Debt API] Fetching from:', workerUrl ? 'Cloudflare Worker' : 'Hybrid endpoint');
+      const response = await this.fetchWithTimeout(endpoint, 8000);
 
       if (response.ok) {
         const data = await response.json();
