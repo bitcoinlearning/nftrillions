@@ -43,12 +43,7 @@ jobs:
           kill $BACKEND_PID || true
       
       - name: Build static site
-        run: |
-          npx vite build
-          # Fix asset paths for GitHub Pages subdirectory
-          find dist/public -name "*.html" -type f -exec sed -i 's|/assets/|/nftrillions/assets/|g' {} \;
-          find dist/public -name "*.js" -type f -exec sed -i 's|"/assets/|"/nftrillions/assets/|g' {} \;
-          find dist/public -name "*.css" -type f -exec sed -i 's|/assets/|/nftrillions/assets/|g' {} \;
+        run: npx vite build --config vite.config.pages.ts
       
       - name: Deploy to GitHub Pages (optional)
         uses: peaceiris/actions-gh-pages@v3
