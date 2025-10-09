@@ -1,0 +1,62 @@
+╔═══════════════════════════════════════════════════════════════════╗
+║            NFTrillions - SiteGround Deployment Package          ║
+║                                                                   ║
+║  Ready to deploy your satirical debt NFT project to the web!    ║
+╚═══════════════════════════════════════════════════════════════════╝
+
+📦 WHAT YOU HAVE:
+   ✓ Production-ready build (dist folder)
+   ✓ All dependencies listed (package.json)
+   ✓ Complete deployment guide (DEPLOYMENT_INSTRUCTIONS.md)
+   ✓ This quick start guide
+
+🚀 DEPLOYMENT IN 5 STEPS:
+
+   1. UPLOAD FILES
+      → Use FTP/SFTP to upload ALL files to your SiteGround hosting
+      → Upload to: public_html (or your domain folder)
+
+   2. INSTALL DEPENDENCIES (via SSH)
+      → SSH into your server
+      → Navigate to your website folder: cd ~/public_html
+      → Run: npm install --production
+
+   3. CONFIGURE NODE.JS APP
+      → SiteGround Site Tools > Devs > Node.js
+      → Create new app
+      → Set startup file: dist/index.js
+      → Node.js version: 18.x or higher
+
+   4. START YOUR APP
+      → In Site Tools > Node.js
+      → Click "Start" on your application
+
+   5. VERIFY
+      → Visit your domain
+      → Check homepage, NFT pages, legal pages all load
+
+📖 DETAILED INSTRUCTIONS:
+   → Open: DEPLOYMENT_INSTRUCTIONS.md
+   → Full step-by-step guide with troubleshooting
+
+⚠️  REQUIREMENTS:
+   ✓ SiteGround account with Node.js support
+   ✓ SSH access enabled
+   ✓ Domain configured and pointing to SiteGround
+   ✓ Node.js 18.x or higher
+
+💡 TIPS:
+   - Read DEPLOYMENT_INSTRUCTIONS.md first!
+   - Enable SSL certificate (free with SiteGround)
+   - Set up SiteGround's CDN for better performance
+   - Bookmark your SiteGround Site Tools login
+
+📧 NEED HELP?
+   Project: contact@nftrillions.xyz
+   SiteGround: https://www.siteground.com/support/
+
+═══════════════════════════════════════════════════════════════════
+
+   Ready to deploy? Start with DEPLOYMENT_INSTRUCTIONS.md!
+
+═══════════════════════════════════════════════════════════════════
