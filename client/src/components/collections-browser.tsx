@@ -195,18 +195,6 @@ export default function CollectionsBrowser() {
           </div>
         )}
 
-        {/* Load More (placeholder for pagination) */}
-        {!isLoading && displaySlices.length > 0 && !searchQuery && tierFilter === "all" && statusFilter === "all" && (
-          <div className="text-center mt-8">
-            <Button 
-              variant="outline"
-              className="glass border border-white/20 font-semibold hover:glass-strong transition-all-300 hover:scale-105"
-              data-testid="load-more-tiers"
-            >
-              Load More Tiers
-            </Button>
-          </div>
-        )}
       </div>
     </section>
   );

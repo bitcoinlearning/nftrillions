@@ -189,7 +189,7 @@ export default function Home() {
 
           <div className="pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4">
             <p className="text-sm text-muted-foreground">
-              © 2024 NFTrillions. All rights reserved. | Built on Solana
+              © 2025 NFTrillions. All rights reserved. | Built on Solana
             </p>
             <div className="flex items-center gap-4 text-sm text-muted-foreground">
               <a href="#" className="hover:text-foreground transition-colors">Terms</a>
