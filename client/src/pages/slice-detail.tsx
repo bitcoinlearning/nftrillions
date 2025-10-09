@@ -1,6 +1,7 @@
 import { useParams } from "wouter";
 import { useQuery } from "@tanstack/react-query";
 import GlassmorphicNav from "@/components/glassmorphic-nav";
+import Footer from "@/components/footer";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, ExternalLink, DollarSign, Calendar, TrendingUp, Users, Info } from "lucide-react";
 import type { Slice } from "@shared/schema";
@@ -275,6 +276,8 @@ export default function SliceDetail() {
           )}
         </div>
       </div>
+
+      <Footer />
     </div>
   );
 }
