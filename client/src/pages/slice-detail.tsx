@@ -5,6 +5,61 @@ import { Button } from "@/components/ui/button";
 import { ArrowLeft, ExternalLink, DollarSign, Calendar, TrendingUp, Users } from "lucide-react";
 import type { Slice } from "@shared/schema";
 
+function numberToWords(num: number): string {
+  if (num === 0) return "zero";
+  
+  const ones = ["", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"];
+  const teens = ["ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen"];
+  const tens = ["", "", "twenty", "thirty", "forty", "fifty", "sixty", "seventy", "eighty", "ninety"];
+  
+  function convertHundreds(n: number): string {
+    let result = "";
+    
+    if (n >= 100) {
+      result += ones[Math.floor(n / 100)] + " hundred";
+      n %= 100;
+      if (n > 0) result += " ";
+    }
+    
+    if (n >= 10 && n < 20) {
+      result += teens[n - 10];
+    } else {
+      if (n >= 20) {
+        result += tens[Math.floor(n / 10)];
+        n %= 10;
+        if (n > 0) result += "-";
+      }
+      if (n > 0 && n < 10) {
+        result += ones[n];
+      }
+    }
+    
+    return result;
+  }
+  
+  const trillion = Math.floor(num / 1000000000000);
+  const billion = Math.floor((num % 1000000000000) / 1000000000);
+  const million = Math.floor((num % 1000000000) / 1000000);
+  
+  let result = "";
+  
+  if (trillion > 0) {
+    result += convertHundreds(trillion) + " trillion";
+  }
+  
+  if (billion > 0) {
+    if (result) result += " ";
+    result += convertHundreds(billion) + " billion";
+  }
+  
+  if (million > 0) {
+    if (result) result += " ";
+    result += convertHundreds(million) + " million";
+  }
+  
+  return result + " dollars";
+}
+
 export default function SliceDetail() {
   const { number } = useParams();
   
@@ -57,6 +112,10 @@ export default function SliceDetail() {
   }
 
   const headlines = slice.headlines ? JSON.parse(slice.headlines) : [];
+  
+  // Calculate debt amount in dollars (slice number * $100 billion)
+  const debtInDollars = slice.number * 100000000000;
+  const debtInWords = numberToWords(debtInDollars);
 
   return (
     <div className="min-h-screen">
@@ -100,37 +159,24 @@ export default function SliceDetail() {
           </div>
 
           {/* Key Stats */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
-            <div className="glass rounded-xl p-4 text-center" data-testid="stat-debt-level">
+          <div className="space-y-4 mb-12">
+            {/* Debt Level - Full Width */}
+            <div className="glass rounded-xl p-6 text-center" data-testid="stat-debt-level">
               <div className="flex items-center justify-center mb-2">
                 <DollarSign className="w-5 h-5 text-primary" />
               </div>
-              <div className="text-sm text-muted-foreground mb-1">Debt Level</div>
-              <div className="font-mono text-xl font-bold">{slice.debtAmount}</div>
+              <div className="text-sm text-muted-foreground mb-2">Debt Level</div>
+              <div className="font-mono text-2xl md:text-3xl font-bold break-all mb-3">{slice.debtAmount}</div>
+              <div className="text-sm text-muted-foreground italic capitalize">{debtInWords}</div>
             </div>
             
-            <div className="glass rounded-xl p-4 text-center" data-testid="stat-date-reached">
+            {/* Date Reached - Full Width */}
+            <div className="glass rounded-xl p-6 text-center" data-testid="stat-date-reached">
               <div className="flex items-center justify-center mb-2">
                 <Calendar className="w-5 h-5 text-secondary" />
               </div>
-              <div className="text-sm text-muted-foreground mb-1">Date Reached</div>
+              <div className="text-sm text-muted-foreground mb-2">Date Reached</div>
               <div className="font-mono text-xl font-bold">{slice.dateReached}</div>
-            </div>
-            
-            <div className="glass rounded-xl p-4 text-center" data-testid="stat-cpi-rate">
-              <div className="flex items-center justify-center mb-2">
-                <TrendingUp className="w-5 h-5 text-accent" />
-              </div>
-              <div className="text-sm text-muted-foreground mb-1">CPI Rate</div>
-              <div className="font-mono text-xl font-bold">{slice.cpiRate || 'N/A'}</div>
-            </div>
-            
-            <div className="glass rounded-xl p-4 text-center" data-testid="stat-interest-rate">
-              <div className="flex items-center justify-center mb-2">
-                <TrendingUp className="w-5 h-5 text-primary" />
-              </div>
-              <div className="text-sm text-muted-foreground mb-1">Interest Rate</div>
-              <div className="font-mono text-xl font-bold">{slice.interestRate || 'N/A'}</div>
             </div>
           </div>
 
