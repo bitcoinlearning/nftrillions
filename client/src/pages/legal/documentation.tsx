@@ -35,12 +35,13 @@ export default function Documentation() {
             <section>
               <h2 className="text-2xl font-display font-bold mb-4">Data Sources</h2>
               <p className="text-muted-foreground leading-relaxed mb-4">
-                All debt data is sourced from official U.S. government APIs:
+                All debt data is sourced from official U.S. government APIs and cached for optimal performance:
               </p>
               <ul className="list-disc list-inside space-y-2 text-muted-foreground">
                 <li><strong>Primary Source:</strong> U.S. Treasury FiscalData API (api.fiscaldata.treasury.gov)</li>
                 <li><strong>Fallback Source:</strong> TreasuryDirect API (treasurydirect.gov)</li>
-                <li><strong>Update Frequency:</strong> Real-time counter with hourly API refresh</li>
+                <li><strong>Data Method:</strong> Live APIs with hourly refresh (dev mode); cached exports (static hosting)</li>
+                <li><strong>Update Frequency:</strong> Animated counter with 4-hour cache refresh</li>
                 <li><strong>Historical Data:</strong> Interpolated from verified Treasury milestones</li>
               </ul>
             </section>

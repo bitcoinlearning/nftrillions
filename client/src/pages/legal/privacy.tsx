@@ -46,7 +46,7 @@ export default function Privacy() {
                 <li>Improve website performance and user experience</li>
                 <li>Understand which features are most popular (analytics)</li>
                 <li>Display NFT ownership on the blockchain (public by design)</li>
-                <li>Provide real-time debt statistics from U.S. Treasury APIs</li>
+                <li>Provide debt statistics sourced from U.S. Treasury data (live in dev mode; cached for static hosting)</li>
               </ul>
             </section>
 

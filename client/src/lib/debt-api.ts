@@ -44,43 +44,22 @@ export class DebtAPI {
     }
 
     try {
-      // Primary: U.S. Treasury FiscalData API
-      const fiscalResponse = await this.fetchWithTimeout(
-        'https://api.fiscaldata.treasury.gov/services/api/fiscal_service/v2/accounting/od/debt_to_penny?fields=record_date,tot_pub_debt_out_amt&sort=-record_date&page[size]=1&format=json',
-        8000
-      );
+      // Use the hybrid backend/static endpoint (works in both dev and static mode)
+      // In dev mode: backend proxies Treasury APIs
+      // In static mode: falls back to exported JSON data
+      const response = await this.fetchWithTimeout('/api/debt/current', 8000);
 
-      if (fiscalResponse.ok) {
-        const fiscalData = await fiscalResponse.json();
-        if (fiscalData?.data?.[0]?.tot_pub_debt_out_amt) {
-          const debtAmount = parseFloat(fiscalData.data[0].tot_pub_debt_out_amt);
-          this.setCache({ amount: debtAmount, timestamp: Date.now(), source: 'FiscalData' });
-          console.log('[Debt API] Fetched from FiscalData:', debtAmount);
+      if (response.ok) {
+        const data = await response.json();
+        if (data?.amount) {
+          const debtAmount = data.amount;
+          this.setCache({ amount: debtAmount, timestamp: Date.now(), source: data.source || 'API' });
+          console.log('[Debt API] Fetched debt data:', debtAmount, 'source:', data.source);
           return debtAmount;
         }
       }
     } catch (error) {
-      console.warn('[Debt API] FiscalData failed, trying fallback');
-    }
-
-    try {
-      // Fallback: TreasuryDirect legacy API
-      const treasuryResponse = await this.fetchWithTimeout(
-        'https://www.treasurydirect.gov/NP_WS/debt/current',
-        8000
-      );
-
-      if (treasuryResponse.ok) {
-        const treasuryData = await treasuryResponse.json();
-        if (treasuryData?.totalDebt) {
-          const debtAmount = parseFloat(treasuryData.totalDebt.replace(/,/g, ''));
-          this.setCache({ amount: debtAmount, timestamp: Date.now(), source: 'TreasuryDirect' });
-          console.log('[Debt API] Fetched from TreasuryDirect:', debtAmount);
-          return debtAmount;
-        }
-      }
-    } catch (error) {
-      console.warn('[Debt API] TreasuryDirect failed');
+      console.warn('[Debt API] API endpoint failed, using cached or fallback value');
     }
 
     // Use stale cache if available

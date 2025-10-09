@@ -64,7 +64,7 @@ export default function SmartContract() {
                 NFTs are minted by the project creator as historical milestones are reached:
               </p>
               <ol className="list-decimal list-inside space-y-2 text-muted-foreground">
-                <li>Real-time debt data is fetched from U.S. Treasury APIs</li>
+                <li>Debt data is sourced from U.S. Treasury APIs (live or cached depending on deployment)</li>
                 <li>When a new $100B threshold is crossed, the corresponding NFT becomes eligible for minting</li>
                 <li>Project creator mints the NFT with verified historical data</li>
                 <li>NFT metadata is permanently stored on-chain</li>

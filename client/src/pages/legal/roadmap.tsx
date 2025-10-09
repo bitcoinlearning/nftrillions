@@ -37,11 +37,11 @@ export default function Roadmap() {
               <ul className="space-y-2 text-muted-foreground">
                 <li className="flex items-start gap-2">
                   <span className="text-green-500 mt-1">✓</span>
-                  <span>Website launch with real-time debt counter</span>
+                  <span>Website launch with animated debt counter</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-green-500 mt-1">✓</span>
-                  <span>Integration with U.S. Treasury FiscalData API</span>
+                  <span>Integration with U.S. Treasury FiscalData API (live in dev; cached for static hosting)</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-green-500 mt-1">✓</span>

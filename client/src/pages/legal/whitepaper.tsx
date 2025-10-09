@@ -49,7 +49,7 @@ export default function Whitepaper() {
                 <li>10 Tiers: 100 NFTs per tier with increasing minted values</li>
                 <li>Progressive Unlocking: NFTs are "released" as real debt milestones are reached</li>
                 <li>Blockchain: Initial launch on Solana, with potential expansion to BNB Smart Chain, Bitcoin, and other chains (TBD)</li>
-                <li>Data Source: U.S. Treasury FiscalData API (official government data)</li>
+                <li>Data Source: U.S. Treasury FiscalData API (official government data, cached and exported for static hosting)</li>
               </ul>
             </section>
 
