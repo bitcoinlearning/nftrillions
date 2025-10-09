@@ -146,9 +146,27 @@ Preferred communication style: Simple, everyday language.
 - Maintains smooth animation while showing accurate data
 
 **Current Debt Status** (as of latest update):
-- Total U.S. Debt: ~$37.84 trillion
-- Minted Slices: 378 (378 × $100B = $37.8T)
-- Next Unlock: $37.9 trillion
+- Total U.S. Debt: ~$37.84 trillion (real-time from Treasury APIs)
+- Live Counter: Increments at ~$80k/second (estimated debt growth rate)
+- Unlocked Slices: 389 (showcase minimum, exceeds actual debt of 378 slices)
+- Next Auto-Unlock: $39.0 trillion (slice #390)
+
+**Tier & Unlock Structure**:
+- **10 Tiers Total**: Each tier has 100 slices with increasing prices ($100-$1000)
+  - Tier 1: $100 (Slices 1-100)
+  - Tier 2: $200 (Slices 101-200)
+  - Tier 3: $300 (Slices 201-300)
+  - Tier 4: $400 (Slices 301-400)
+  - Tier 5: $500 (Slices 401-500)
+  - Tier 6: $600 (Slices 501-600)
+  - Tier 7: $700 (Slices 601-700)
+  - Tier 8: $800 (Slices 701-800)
+  - Tier 9: $900 (Slices 801-900)
+  - Tier 10: $1000 (Slices 901-1000)
+
+- **Unlock Logic**:
+  - Slices 1-389: Always unlocked (showcase minimum for content visibility)
+  - Slices 390-1000: Auto-unlock based on live debt counter as milestones are reached
 
 ### Application Flow
 
