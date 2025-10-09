@@ -9,7 +9,7 @@ export default function SliceDetail() {
   const { number } = useParams();
   
   const { data: slice, isLoading, error } = useQuery<Slice>({
-    queryKey: ["/api/slices", number],
+    queryKey: [`/api/slices/${number}`],
     enabled: !!number,
   });
 
