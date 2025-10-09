@@ -80,13 +80,13 @@ export default function CollectionsBrowser() {
             <div className="glass-strong rounded-2xl p-4 border border-white/10">
               <div className="flex flex-col sm:flex-row gap-3">
                 <div className="flex-1 relative">
-                  <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-muted-foreground" />
+                  <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
                   <Input 
                     type="text" 
                     placeholder="Search by slice number or range..." 
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
-                    className="pl-12 pr-4 py-3 bg-background/80 border border-white/10 rounded-xl text-white placeholder:text-muted-foreground focus:border-primary transition-colors"
+                    className="pl-12 pr-4 py-3 bg-white/90 border border-white/20 rounded-xl text-black placeholder:text-gray-500 focus:border-primary transition-colors"
                     data-testid="search-input"
                   />
                 </div>

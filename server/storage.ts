@@ -168,12 +168,28 @@ export class MemStorage implements IStorage {
     const allSlices = await this.getAllSlices();
     const lowerQuery = query.toLowerCase();
     
-    return allSlices.filter(slice => 
-      slice.number.toString().includes(lowerQuery) ||
-      slice.debtAmount.toLowerCase().includes(lowerQuery) ||
-      slice.dateReached?.toLowerCase().includes(lowerQuery) ||
-      slice.president?.toLowerCase().includes(lowerQuery)
-    );
+    // Strip # and whitespace for number matching
+    const cleanedQuery = query.replace('#', '').trim();
+    const queryAsNumber = parseInt(cleanedQuery);
+    
+    // Check if the cleaned query is purely numeric (after stripping #)
+    const isPurelyNumeric = /^\d+$/.test(cleanedQuery);
+    
+    return allSlices.filter(slice => {
+      // Check if query matches slice number (handles "001", "#103", etc.)
+      // Only match by number if the query is purely numeric
+      if (isPurelyNumeric && !isNaN(queryAsNumber) && slice.number === queryAsNumber) {
+        return true;
+      }
+      
+      // Also check string matches for other fields
+      return (
+        slice.number.toString().includes(lowerQuery) ||
+        slice.debtAmount.toLowerCase().includes(lowerQuery) ||
+        slice.dateReached?.toLowerCase().includes(lowerQuery) ||
+        slice.president?.toLowerCase().includes(lowerQuery)
+      );
+    });
   }
 
   async filterSlices(filters: { tier?: number; unlocked?: boolean }): Promise<Slice[]> {
