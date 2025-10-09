@@ -57,7 +57,7 @@ export default function Home() {
               </div>
               <h3 className="font-display text-xl font-bold mb-3">Creator Royalties</h3>
               <p className="text-muted-foreground leading-relaxed">
-                Creator fees set at <strong className="text-foreground">5-10%</strong> in metadata, 
+                Creator fees set at <strong className="text-foreground">5%</strong> in metadata, 
                 honored where marketplaces enforce royalties for sustainable development.
               </p>
             </div>
@@ -70,8 +70,8 @@ export default function Home() {
               </div>
               <h3 className="font-display text-xl font-bold mb-3">Historical Context</h3>
               <p className="text-muted-foreground leading-relaxed">
-                Each slice includes its own page with <strong className="text-foreground">CPI data, interest rates</strong>, 
-                curated headlines, and historical notes for that period.
+                Each slice includes its own page with <strong className="text-foreground">curated headlines</strong> 
+                and historical notes for that period.
               </p>
             </div>
 

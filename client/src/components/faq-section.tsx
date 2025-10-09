@@ -20,7 +20,7 @@ export default function FaqSection() {
     {
       id: "included-data",
       question: "What data is included with each NFT?",
-      answer: "Each NFT comes with its own dedicated page featuring: exact debt amount at that milestone, Consumer Price Index (CPI) data, interest rates, curated news headlines from that period, historical context notes, and information about who was in office. All data is sourced from official government and financial institutions."
+      answer: "Each NFT comes with its own dedicated page featuring: exact debt amount at that milestone, curated news headlines from that period, historical context notes, and information about who was in office. All data is sourced from official government sources."
     },
     {
       id: "other-blockchains",
@@ -30,7 +30,7 @@ export default function FaqSection() {
     {
       id: "royalties",
       question: "How are royalties handled?",
-      answer: "Creator royalties are set at 5 – 10% in the NFT metadata. These royalties are automatically routed to the creator wallet whenever a secondary sale occurs on marketplaces that enforce royalty payments.\n\nAll creator fees are paid directly to the creator wallet and may be used entirely at the creator's discretion. This can include—but is not limited to—funding new art or development, covering infrastructure costs, producing educational content, supporting community events, or simply personal use by the creator. There are no guarantees that royalties will be used for any specific purpose.\n\nWe include this transparency because we believe creators should be fairly compensated for their work, and buyers should understand exactly how royalties are handled. These payments are not investments, they do not entitle holders to revenue or profits, and they do not create any financial relationship between the creator and collectors."
+      answer: "Creator royalties are set at 5% in the NFT metadata. These royalties are automatically routed to the creator wallet whenever a secondary sale occurs on marketplaces that enforce royalty payments.\n\nAll creator fees are paid directly to the creator wallet and may be used entirely at the creator's discretion. This can include—but is not limited to—funding new art or development, covering infrastructure costs, producing educational content, supporting community events, or simply personal use by the creator. There are no guarantees that royalties will be used for any specific purpose.\n\nWe include this transparency because we believe creators should be fairly compensated for their work, and buyers should understand exactly how royalties are handled. These payments are not investments, they do not entitle holders to revenue or profits, and they do not create any financial relationship between the creator and collectors."
     }
   ];
 

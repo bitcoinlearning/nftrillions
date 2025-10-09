@@ -39,7 +39,7 @@ export default function SmartContract() {
                 <li><strong>Multi-Chain Support:</strong> Potential deployment on BNB Smart Chain, Bitcoin, and others (TBD)</li>
                 <li><strong>Minting Protocol:</strong> Controlled treasury wallet minting</li>
                 <li><strong>Update Authority:</strong> Revoked after minting (immutable metadata)</li>
-                <li><strong>Royalties:</strong> None (this is an art/educational project)</li>
+                <li><strong>Royalties:</strong> 5% (this is an art/educational project)</li>
               </ul>
             </section>
 
@@ -53,7 +53,6 @@ export default function SmartContract() {
                 <li>Debt Amount ($100B increments)</li>
                 <li>Date Reached (historical or projected)</li>
                 <li>Tier Classification (1-10)</li>
-                <li>Economic Data (CPI, interest rates)</li>
                 <li>Historical Context (presidency, major events)</li>
               </ul>
             </section>

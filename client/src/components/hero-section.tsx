@@ -63,7 +63,7 @@ export default function HeroSection() {
             </div>
             <div className="px-4 py-2 rounded-full glass border border-white/10" data-testid="stat-royalties">
               <span className="text-muted-foreground">Royalties:</span>
-              <span className="font-bold ml-2">5-10%</span>
+              <span className="font-bold ml-2">5%</span>
             </div>
             <div className="px-4 py-2 rounded-full glass border border-white/10" data-testid="stat-chain">
               <span className="text-muted-foreground">Chain:</span>

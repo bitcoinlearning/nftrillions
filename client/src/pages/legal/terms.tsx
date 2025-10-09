@@ -28,7 +28,7 @@ export default function Terms() {
             <section>
               <h2 className="text-2xl font-display font-bold mb-4">1. Acceptance of Terms</h2>
               <p className="text-muted-foreground leading-relaxed">
-                By accessing or using NFTrillions.xyz, you agree to these Terms of Service. If you do not agree, please do not use this website. These terms apply to all visitors, users, and others who access the service.
+                By accessing or using this website, you agree to these Terms of Service. If you do not agree, please do not use this website. These terms apply to all visitors, users, and others who access the service.
               </p>
             </section>
 

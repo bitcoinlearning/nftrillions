@@ -38,7 +38,7 @@ export default function Whitepaper() {
                 This project transforms abstract economic data into tangible digital artifacts. By minting NFTs at each $100 billion increment, we create a visual timeline that makes the scale of national debt comprehensible and thought-provoking.
               </p>
               <p className="text-muted-foreground leading-relaxed">
-                Each NFT includes historical context, economic indicators (CPI, interest rates), political context (presidency), and major headlines from when that debt milestone was reached.
+                Each NFT includes historical context, political context (presidency), and major headlines from when that debt milestone was reached.
               </p>
             </section>
 
