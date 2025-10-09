@@ -42,7 +42,17 @@ jobs:
           # Stop backend
           kill $BACKEND_PID || true
       
-      - name: Build static site for SiteGround
+      - name: Build for GitHub Pages
+        run: npx vite build --config vite.config.pages.ts
+      
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist/public
+          publish_branch: gh-pages
+      
+      - name: Build for SiteGround
         run: npx vite build --config vite.config.siteground.ts
       
       - name: Deploy to SiteGround via FTP
