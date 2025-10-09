@@ -187,3 +187,52 @@ Preferred communication style: Simple, everyday language.
 **Performance**: Aggressive caching strategy with React Query, lazy loading of routes, optimized Vite builds with code splitting.
 
 **Scalability Considerations**: Interface-based storage layer allows migration from in-memory to database without changing business logic. Stateless backend enables horizontal scaling.
+
+### Deployment Strategy
+
+**Hybrid Architecture**: The application uses a dual-mode system that works with or without a backend server:
+
+**Development Mode** (with backend):
+- Full-stack Express + React application
+- Live API endpoints for real-time data
+- Treasury API integration with hourly caching
+- In-memory storage for slice/stats data
+
+**Static Mode** (no backend):
+- Frontend-only deployment using static JSON files
+- Automatic backend detection and fallback
+- Pre-exported data files (slices.json, stats.json)
+- Works on shared hosting (SiteGround, etc.)
+
+**Query Client Architecture**:
+- Hybrid query client (`client/src/lib/queryClient.hybrid.ts`) auto-detects backend availability
+- Falls back to static data loader when backend unavailable
+- Uses `BASE_URL` for proper subdirectory deployment support
+- Maintains same API surface for seamless switching
+
+**Static Deployment Process**:
+1. Export data: `node scripts/export-static-data.cjs` (fetches from running dev server)
+2. Build frontend: `npm run build` (outputs to `dist/public/`)
+3. Upload to hosting: Deploy `dist/public/` contents to web server
+4. Apache routing: `.htaccess` handles SPA routing (included in build)
+
+**Static Data Files**:
+- `slices.json` (301KB) - All 1,000 NFT slices with metadata
+- `stats.json` (180B) - Current debt statistics
+- Both use `import.meta.env.BASE_URL` for path resolution
+
+**Deployment Targets**:
+- Primary: SiteGround shared hosting (static files only)
+- Compatible: Any static hosting (Netlify, Vercel, GitHub Pages, etc.)
+- Development: Replit with full-stack Express backend
+
+**Treasury Data in Static Mode**:
+- Uses cached debt data from `stats.json` (build-time snapshot)
+- Client-side counter increments from cached base value
+- Update process: re-export data → rebuild → redeploy
+- Future: Serverless proxy for real-time updates (Cloudflare Workers, Vercel Edge)
+
+**Documentation**:
+- `DEPLOYMENT.md` - Complete deployment guide with troubleshooting
+- `DEPLOY-QUICK-START.md` - Quick 3-step deployment process
+- `scripts/export-static-data.cjs` - Automated data export tool
