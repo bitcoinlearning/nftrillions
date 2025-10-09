@@ -2,7 +2,7 @@ import { useParams } from "wouter";
 import { useQuery } from "@tanstack/react-query";
 import GlassmorphicNav from "@/components/glassmorphic-nav";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, ExternalLink, DollarSign, Calendar, TrendingUp, Users } from "lucide-react";
+import { ArrowLeft, ExternalLink, DollarSign, Calendar, TrendingUp, Users, Info } from "lucide-react";
 import type { Slice } from "@shared/schema";
 
 function numberToWords(num: number): string {
@@ -181,7 +181,7 @@ export default function SliceDetail() {
           </div>
 
           {/* President & Context */}
-          <div className="grid md:grid-cols-2 gap-6 mb-12">
+          <div className="grid md:grid-cols-2 gap-6 mb-8">
             {slice.president && (
               <div className="glass rounded-xl p-6" data-testid="section-president">
                 <div className="flex items-center mb-3">
@@ -215,6 +215,16 @@ export default function SliceDetail() {
                   This NFT hasn't been released yet. It will be automatically released when U.S. debt reaches this milestone.
                 </p>
               )}
+            </div>
+          </div>
+
+          {/* Minted Value Disclaimer */}
+          <div className="glass rounded-xl p-5 mb-12 border border-primary/20 bg-primary/5" data-testid="section-minted-value-info">
+            <div className="flex items-start gap-3">
+              <Info className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
+              <p className="text-sm text-muted-foreground leading-relaxed">
+                <strong className="text-foreground">'Minted Value'</strong> refers to the symbolic release value assigned by the creator at the time of minting. All NFTs are creator-minted and may trade at different market prices based on collector demand.
+              </p>
             </div>
           </div>
 
