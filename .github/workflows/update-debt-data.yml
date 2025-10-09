@@ -1,0 +1,61 @@
+name: Update NFTrillions Debt Data
+
+on:
+  # Run every 12 hours
+  schedule:
+    - cron: '0 */12 * * *'
+  
+  # Allow manual trigger
+  workflow_dispatch:
+
+jobs:
+  update-and-deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      
+      - name: Install dependencies
+        run: npm install
+      
+      - name: Start backend and export fresh data
+        run: |
+          # Start backend in background
+          npm run dev &
+          BACKEND_PID=$!
+          
+          # Wait for backend to be ready
+          echo "Waiting for backend to start..."
+          sleep 15
+          
+          # Export fresh Treasury data
+          node scripts/export-static-data.cjs
+          
+          # Stop backend
+          kill $BACKEND_PID || true
+      
+      - name: Build static site
+        run: npm run build
+      
+      - name: Deploy to GitHub Pages (optional)
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist/public
+          publish_branch: gh-pages
+        
+      # Optional: Add FTP deployment to SiteGround
+      # - name: Deploy to SiteGround via FTP
+      #   uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+      #   with:
+      #     server: ${{ secrets.FTP_SERVER }}
+      #     username: ${{ secrets.FTP_USERNAME }}
+      #     password: ${{ secrets.FTP_PASSWORD }}
+      #     local-dir: ./dist/public/
+      #     server-dir: /public_html/
