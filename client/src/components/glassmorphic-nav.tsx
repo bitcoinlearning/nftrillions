@@ -55,8 +55,15 @@ export default function GlassmorphicNav() {
             
             <div className="hidden md:flex items-center gap-6" data-testid="nav-desktop-links">
               <a 
-                href="#hero" 
-                onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
+                href="/" 
+                onClick={(e) => { 
+                  e.preventDefault(); 
+                  if (window.location.pathname === '/') {
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                  } else {
+                    window.location.href = '/';
+                  }
+                }}
                 className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors"
                 data-testid="nav-link-home"
               >
@@ -114,8 +121,16 @@ export default function GlassmorphicNav() {
           <div className="fixed top-20 left-4 right-4 glass-strong rounded-2xl border border-white/20 p-6">
             <div className="space-y-4" data-testid="nav-mobile-links">
               <a 
-                href="#hero" 
-                onClick={(e) => { e.preventDefault(); setIsMenuOpen(false); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
+                href="/" 
+                onClick={(e) => { 
+                  e.preventDefault(); 
+                  setIsMenuOpen(false); 
+                  if (window.location.pathname === '/') {
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                  } else {
+                    window.location.href = '/';
+                  }
+                }}
                 className="block text-lg font-medium text-foreground hover:text-primary transition-colors"
                 data-testid="nav-mobile-link-home"
               >
