@@ -91,7 +91,7 @@ export default function TierCard({ tier, slices, price, range }: TierCardProps) 
                 ))}
                 
                 {/* Locked slices */}
-                {lockedSlices.slice(0, 3).map((slice) => (
+                {lockedSlices.map((slice) => (
                   <div 
                     key={slice.id}
                     className="slice-chip locked glass rounded-xl p-4 border border-white/10 opacity-50 text-center cursor-not-allowed"
