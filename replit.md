@@ -130,19 +130,35 @@ Preferred communication style: Simple, everyday language.
 
 ### Debt Data Integration
 
-**Real-Time Debt API** (`/api/debt/current`):
+**Cloudflare Worker Proxy** (Recommended for Production):
+- **Worker URL**: Configurable via `VITE_CLOUDFLARE_WORKER_URL` environment variable
+- **Caching Strategy**: 12-hour Cloudflare edge caching (twice-daily updates)
+- **CORS Support**: Full CORS headers for client-side browser requests
+- **Rate Limiting**: Distributed across all users (each user's IP makes requests)
+- **Deployment**: Works perfectly with static hosting (SiteGround, Netlify, etc.)
+- **Cost**: FREE tier (100,000 requests/day included)
+- **Location**: Worker code in `cloudflare-worker/treasury-proxy.js`
+- **Documentation**: Complete setup guide in `cloudflare-worker/DEPLOYMENT-GUIDE.md`
+
+**Data Sources** (Worker & Hybrid Backend):
 - **Primary Source**: U.S. Treasury FiscalData API - Official daily debt data
   - Endpoint: `https://api.fiscaldata.treasury.gov/services/api/fiscal_service/v2/accounting/od/debt_to_penny`
 - **Fallback Source**: TreasuryDirect Legacy API
   - Endpoint: `https://www.treasurydirect.gov/NP_WS/debt/current`
-- **Caching Strategy**: 1-hour in-memory cache to minimize API requests
 - **Error Handling**: Three-tier fallback (FiscalData → TreasuryDirect → Cached/Hardcoded value)
-- **Response Format**: Returns `{ amount, formatted, cached, cacheAge, source }`
+- **Response Format**: Returns `{ amount, formatted, cached, cacheAge, source, timestamp }`
+
+**Hybrid Backend API** (`/api/debt/current`):
+- **Development Mode**: Express backend proxies Treasury APIs with 1-hour cache
+- **Static Mode**: Falls back to pre-exported JSON data (stats.json)
+- **Priority**: Uses Cloudflare Worker if `VITE_CLOUDFLARE_WORKER_URL` is set
+- **Fallback**: Uses hybrid endpoint if Worker URL not configured
 
 **Frontend Counter Animation**:
-- Fetches real debt from `/api/debt/current` hourly
+- Fetches real debt from Cloudflare Worker (or hybrid endpoint) on mount
+- Updates every 4 hours to match cache duration
 - Uses base API value to seed client-side counter
-- Increments $1M per second for visual engagement
+- Increments $80k per second for visual engagement
 - Maintains smooth animation while showing accurate data
 
 **Current Debt Status** (as of latest update):
