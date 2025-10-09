@@ -70,8 +70,7 @@ export default function Home() {
               </div>
               <h3 className="font-display text-xl font-bold mb-3">Historical Context</h3>
               <p className="text-muted-foreground leading-relaxed">
-                Each slice includes its own page with <strong className="text-foreground">curated headlines</strong> 
-                and historical notes for that period.
+                Each slice includes its own page with <strong className="text-foreground">curated headlines</strong> and historical notes for that period.
               </p>
             </div>
 
