@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
 
+const BASE_PATH = import.meta.env.BASE_URL || '/';
+
 export default function GlassmorphicNav() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
@@ -15,11 +17,20 @@ export default function GlassmorphicNav() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  const getBasePath = () => {
+    return BASE_PATH.endsWith('/') ? BASE_PATH.slice(0, -1) : BASE_PATH;
+  };
+
+  const isHomePage = () => {
+    const basePath = getBasePath();
+    return window.location.pathname === basePath || window.location.pathname === basePath + '/';
+  };
+
   const handleAnchorClick = (href: string) => {
     setIsMenuOpen(false);
     if (href.startsWith('#')) {
       // Check if we're on the home page
-      if (window.location.pathname === '/') {
+      if (isHomePage()) {
         const element = document.querySelector(href);
         if (element) {
           const navHeight = 80;
@@ -31,7 +42,8 @@ export default function GlassmorphicNav() {
         }
       } else {
         // Navigate to home page with hash
-        window.location.href = `/${href}`;
+        const basePath = getBasePath();
+        window.location.href = `${basePath}/${href}`;
       }
     }
   };
@@ -55,13 +67,13 @@ export default function GlassmorphicNav() {
             
             <div className="hidden md:flex items-center gap-6" data-testid="nav-desktop-links">
               <a 
-                href="/" 
+                href={getBasePath() || '/'} 
                 onClick={(e) => { 
                   e.preventDefault(); 
-                  if (window.location.pathname === '/') {
+                  if (isHomePage()) {
                     window.scrollTo({ top: 0, behavior: 'smooth' });
                   } else {
-                    window.location.href = '/';
+                    window.location.href = getBasePath() || '/';
                   }
                 }}
                 className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors"
@@ -121,14 +133,14 @@ export default function GlassmorphicNav() {
           <div className="fixed top-20 left-4 right-4 glass-strong rounded-2xl border border-white/20 p-6">
             <div className="space-y-4" data-testid="nav-mobile-links">
               <a 
-                href="/" 
+                href={getBasePath() || '/'} 
                 onClick={(e) => { 
                   e.preventDefault(); 
                   setIsMenuOpen(false); 
-                  if (window.location.pathname === '/') {
+                  if (isHomePage()) {
                     window.scrollTo({ top: 0, behavior: 'smooth' });
                   } else {
-                    window.location.href = '/';
+                    window.location.href = getBasePath() || '/';
                   }
                 }}
                 className="block text-lg font-medium text-foreground hover:text-primary transition-colors"

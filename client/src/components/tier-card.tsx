@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "wouter";
 import { Slice } from "@shared/schema";
 import { ChevronDown, Lock, ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -74,7 +75,7 @@ export default function TierCard({ tier, slices, price, range }: TierCardProps) 
               <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 mb-4">
                 {/* Unlocked slices */}
                 {unlockedSlices.map((slice) => (
-                  <a 
+                  <Link 
                     key={slice.id}
                     href={`/nft/${slice.number}`} 
                     className={`slice-chip glass rounded-xl p-4 border ${getBorderClass(tier)} transition-all text-center group`}
@@ -87,7 +88,7 @@ export default function TierCard({ tier, slices, price, range }: TierCardProps) 
                     <div className="mt-2 text-xs text-primary opacity-0 group-hover:opacity-100 transition-opacity">
                       View →
                     </div>
-                  </a>
+                  </Link>
                 ))}
                 
                 {/* Locked slices */}
