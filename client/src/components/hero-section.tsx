@@ -34,7 +34,7 @@ export default function HeroSection() {
           </h1>
           
           <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto mb-8 leading-relaxed" data-testid="hero-description">
-            NFTrillions is a satirical, educational NFT collection chronicling U.S. debt on-chain. 
+            NFTrillions is a satirical, educational NFT collection chronicling U.S. debt on-chain.{' '}
             <strong className="text-foreground">1,000 unique NFTs</strong> — one for every $100B milestone — with historical context, data, and timestamps.
           </p>
 

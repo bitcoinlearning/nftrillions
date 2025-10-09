@@ -131,7 +131,7 @@ export default function SliceDetail() {
             className="mb-6 glass hover:glass-strong"
             data-testid="button-back-home"
           >
-            <a href="/#collections">
+            <a href={`${import.meta.env.BASE_URL || '/'}#collections`.replace(/\/\//g, '/')}>
               <ArrowLeft className="w-4 h-4 mr-2" />
               Back to Collections
             </a>

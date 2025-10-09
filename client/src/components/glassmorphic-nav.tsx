@@ -61,7 +61,7 @@ export default function GlassmorphicNav() {
               </div>
               <div>
                 <div className="font-display font-bold text-lg md:text-xl gradient-text">NFTrillions</div>
-                <div className="text-xs text-muted-foreground hidden sm:block">Solana Debt Slices</div>
+                <div className="text-xs text-muted-foreground hidden sm:block">Path to $100 Trillion</div>
               </div>
             </div>
             

@@ -83,7 +83,7 @@ export default function Home() {
               </div>
               <h3 className="font-display text-xl font-bold mb-3">Multi-Chain Future</h3>
               <p className="text-muted-foreground leading-relaxed">
-                Bitcoin will host <strong className="text-foreground">100 Trillion Slices</strong> (1 per $1T). 
+                Bitcoin will host <strong className="text-foreground">100 NFTs</strong>, (1 for every $1T of debt). 
                 BNB mirrors Solana's model. All on dedicated pages.
               </p>
             </div>
