@@ -111,7 +111,7 @@ export default function LiveStats() {
                   Current U.S. Debt
                 </div>
                 <div 
-                  className="font-mono text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold gradient-text mb-3" 
+                  className="font-mono text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold gradient-text mb-3 break-words" 
                   data-testid="debt-counter"
                 >
                   {animatedDebt}
@@ -155,7 +155,7 @@ export default function LiveStats() {
                     <Clock className="w-5 h-5" />
                     Next Release At
                   </div>
-                  <div className="font-mono text-2xl sm:text-3xl lg:text-4xl font-bold gradient-text mb-2" data-testid="next-unlock-amount">
+                  <div className="font-mono text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold gradient-text mb-2 break-words" data-testid="next-unlock-amount">
                     {nextUnlockFormatted}
                   </div>
                   <div className="text-xs text-muted-foreground" data-testid="next-slice-number">
