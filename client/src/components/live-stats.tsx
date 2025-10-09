@@ -159,7 +159,7 @@ export default function LiveStats() {
                     {nextUnlockFormatted}
                   </div>
                   <div className="text-xs text-muted-foreground" data-testid="next-slice-number">
-                    Releases Slice #{nextSliceNumber}
+                    Releases NFT #{nextSliceNumber}
                   </div>
                 </div>
               </div>

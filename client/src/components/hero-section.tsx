@@ -28,14 +28,14 @@ export default function HeroSection() {
           </div>
           
           <h1 className="font-display text-4xl sm:text-5xl md:text-7xl font-bold mb-6 leading-tight" data-testid="hero-title">
-            Own a Slice of the
+            Own an NFT of the
             <br />
             <span className="gradient-text">$100 Trillion</span> Journey
           </h1>
           
           <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto mb-8 leading-relaxed" data-testid="hero-description">
             NFTrillions is a satirical, educational NFT collection chronicling U.S. debt on-chain. 
-            <strong className="text-foreground">1,000 unique slices</strong> — one for every $100B milestone — with historical context, data, and timestamps.
+            <strong className="text-foreground">1,000 unique NFTs</strong> — one for every $100B milestone — with historical context, data, and timestamps.
           </p>
 
           <div className="flex flex-wrap items-center justify-center gap-4 mb-8">

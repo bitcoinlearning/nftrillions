@@ -95,9 +95,9 @@ export default function SliceDetail() {
         <GlassmorphicNav />
         <div className="pt-32 px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto text-center">
-            <h1 className="font-display text-3xl font-bold mb-4">Slice Not Found</h1>
+            <h1 className="font-display text-3xl font-bold mb-4">NFT Not Found</h1>
             <p className="text-muted-foreground mb-8">
-              The slice you're looking for doesn't exist or hasn't been unlocked yet.
+              The NFT you're looking for doesn't exist or hasn't been unlocked yet.
             </p>
             <Button asChild>
               <a href="/">
@@ -139,7 +139,7 @@ export default function SliceDetail() {
           {/* Header */}
           <div className="text-center mb-12">
             <h1 className="font-display text-4xl md:text-6xl font-bold mb-4">
-              Slice <span className="gradient-text">#{slice.number.toString().padStart(3, '0')}</span>
+              NFT <span className="gradient-text">#{slice.number.toString().padStart(3, '0')}</span>
             </h1>
             <p className="text-xl text-muted-foreground">
               {slice.debtAmount} • {slice.dateReached}

@@ -46,16 +46,16 @@ export default function CollectionsBrowser() {
   }, {});
 
   const tiers = [
-    { tier: 1, price: 100, range: "Slices #001 — #100" },
-    { tier: 2, price: 200, range: "Slices #101 — #200" },
-    { tier: 3, price: 300, range: "Slices #201 — #300" },
-    { tier: 4, price: 400, range: "Slices #301 — #400" },
-    { tier: 5, price: 500, range: "Slices #401 — #500" },
-    { tier: 6, price: 600, range: "Slices #501 — #600" },
-    { tier: 7, price: 700, range: "Slices #601 — #700" },
-    { tier: 8, price: 800, range: "Slices #701 — #800" },
-    { tier: 9, price: 900, range: "Slices #801 — #900" },
-    { tier: 10, price: 1000, range: "Slices #901 — #1,000" },
+    { tier: 1, price: 100, range: "NFTs #001 — #100" },
+    { tier: 2, price: 200, range: "NFTs #101 — #200" },
+    { tier: 3, price: 300, range: "NFTs #201 — #300" },
+    { tier: 4, price: 400, range: "NFTs #301 — #400" },
+    { tier: 5, price: 500, range: "NFTs #401 — #500" },
+    { tier: 6, price: 600, range: "NFTs #501 — #600" },
+    { tier: 7, price: 700, range: "NFTs #601 — #700" },
+    { tier: 8, price: 800, range: "NFTs #701 — #800" },
+    { tier: 9, price: 900, range: "NFTs #801 — #900" },
+    { tier: 10, price: 1000, range: "NFTs #901 — #1,000" },
   ];
 
   const clearFilters = () => {
@@ -72,7 +72,7 @@ export default function CollectionsBrowser() {
             Explore Collections
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-8">
-            Browse all debt slices by tier. Prices increase with historical significance.
+            Browse all debt NFTs by tier. Prices increase with historical significance.
           </p>
 
           {/* Search & Filter Bar */}
@@ -83,7 +83,7 @@ export default function CollectionsBrowser() {
                   <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
                   <Input 
                     type="text" 
-                    placeholder="Search by slice number or range..." 
+                    placeholder="Search by NFT number or range..." 
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
                     className="pl-12 pr-4 py-3 bg-white/90 border border-white/20 rounded-xl text-black placeholder:text-gray-500 focus:border-primary transition-colors"
@@ -131,7 +131,7 @@ export default function CollectionsBrowser() {
               {(searchQuery || tierFilter !== "all" || statusFilter !== "all") && (
                 <div className="mt-3 flex items-center justify-between">
                   <span className="text-sm text-muted-foreground" data-testid="results-count">
-                    {displaySlices.length} slices found
+                    {displaySlices.length} NFTs found
                   </span>
                   <Button 
                     variant="ghost" 
@@ -185,7 +185,7 @@ export default function CollectionsBrowser() {
         {!isLoading && displaySlices.length === 0 && (searchQuery || tierFilter !== "all" || statusFilter !== "all") && (
           <div className="text-center py-12">
             <Filter className="w-16 h-16 mx-auto mb-4 text-muted-foreground opacity-50" />
-            <h3 className="font-display text-xl font-bold mb-2">No slices found</h3>
+            <h3 className="font-display text-xl font-bold mb-2">No NFTs found</h3>
             <p className="text-muted-foreground mb-4">
               Try adjusting your search or filter criteria
             </p>

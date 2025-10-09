@@ -107,8 +107,8 @@ export default function TierCard({ tier, slices, price, range }: TierCardProps) 
               </div>
               <p className="text-xs text-muted-foreground">
                 {lockedSlices.length > 0 
-                  ? "Additional slices will be revealed as debt milestones are reached"
-                  : "All slices in this tier are currently unlocked"
+                  ? "Additional NFTs will be revealed as debt milestones are reached"
+                  : "All NFTs in this tier are currently unlocked"
                 }
               </p>
             </>

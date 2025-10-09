@@ -5,22 +5,22 @@ export default function FaqSection() {
     {
       id: "what-is-nftrillions",
       question: "What is NFTrillions?",
-      answer: "NFTrillions is a satirical, educational NFT project that chronicles the rise of U.S. national debt on the blockchain. We release one unique NFT for every $100 billion increase in debt, capped at 1,000 total slices. Each NFT includes historical context, economic data, and timestamps of that moment in financial history."
+      answer: "NFTrillions is a satirical, educational NFT project that chronicles the rise of U.S. national debt on the blockchain. We release one unique NFT for every $100 billion increase in debt, capped at 1,000 total NFTs. Each NFT includes historical context, economic data, and timestamps of that moment in financial history."
     },
     {
       id: "unlock-mechanism",
       question: "How does the unlock mechanism work?",
-      answer: "New slices are automatically released from the treasury wallet when official U.S. debt reaches each $100B milestone. All releases are verified on-chain and announced through our official channels with proof of the debt level at that moment."
+      answer: "New NFTs are automatically released from the treasury wallet when official U.S. debt reaches each $100B milestone. All releases are verified on-chain and announced through our official channels with proof of the debt level at that moment."
     },
     {
       id: "tiered-pricing",
       question: "Why are prices tiered?",
-      answer: "Pricing reflects historical significance and scarcity. Earlier slices (lower numbers) represent historic debt levels and are priced lower for accessibility. Later slices represent more recent debt accumulation and carry higher prices as they approach the 1,000 cap. This tiered model rewards early collectors while acknowledging growing significance."
+      answer: "Pricing reflects historical significance and scarcity. Earlier NFTs (lower numbers) represent historic debt levels and are priced lower for accessibility. Later NFTs represent more recent debt accumulation and carry higher prices as they approach the 1,000 cap. This tiered model rewards early collectors while acknowledging growing significance."
     },
     {
       id: "included-data",
       question: "What data is included with each NFT?",
-      answer: "Each slice comes with its own dedicated page featuring: exact debt amount at that milestone, Consumer Price Index (CPI) data, interest rates, curated news headlines from that period, historical context notes, and information about who was in office. All data is sourced from official government and financial institutions."
+      answer: "Each NFT comes with its own dedicated page featuring: exact debt amount at that milestone, Consumer Price Index (CPI) data, interest rates, curated news headlines from that period, historical context notes, and information about who was in office. All data is sourced from official government and financial institutions."
     },
     {
       id: "other-blockchains",
