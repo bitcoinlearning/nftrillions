@@ -28,7 +28,7 @@ export default function Whitepaper() {
             <section>
               <h2 className="text-2xl font-display font-bold mb-4">Project Overview</h2>
               <p className="text-muted-foreground leading-relaxed">
-                NFTrillions is a satirical digital art project that chronicles the growth of U.S. national debt through 1,000 unique NFTs on the Solana blockchain. Each NFT represents a $100 billion milestone in the debt's history, creating a permanent, immutable record of fiscal policy through blockchain technology.
+                NFTrillions is a satirical digital art project that chronicles the growth of U.S. national debt through 1,000 unique NFTs on blockchain technology. Each NFT represents a $100 billion milestone in the debt's history, creating a permanent, immutable record of fiscal policy. The project may deploy on multiple blockchains including Solana, BNB Smart Chain, Bitcoin, and others (TBD).
               </p>
             </section>
 
@@ -48,7 +48,7 @@ export default function Whitepaper() {
                 <li>Total Supply: 1,000 NFTs (representing $0.1T to $100T)</li>
                 <li>10 Tiers: 100 NFTs per tier with increasing minted values</li>
                 <li>Progressive Unlocking: NFTs are "released" as real debt milestones are reached</li>
-                <li>Blockchain: Solana (for speed and low transaction costs)</li>
+                <li>Blockchain: Initial launch on Solana, with potential expansion to BNB Smart Chain, Bitcoin, and other chains (TBD)</li>
                 <li>Data Source: U.S. Treasury FiscalData API (official government data)</li>
               </ul>
             </section>

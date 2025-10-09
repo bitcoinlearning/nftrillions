@@ -28,15 +28,15 @@ export default function SmartContract() {
             <section>
               <h2 className="text-2xl font-display font-bold mb-4">Smart Contract Overview</h2>
               <p className="text-muted-foreground leading-relaxed">
-                NFTrillions NFTs are minted on the Solana blockchain using standard Metaplex protocols. The smart contracts are designed for transparency, security, and immutability.
+                NFTrillions NFTs are minted on blockchain technology with plans to support multiple chains. Initial deployment uses Solana with Metaplex protocols, with potential expansion to BNB Smart Chain, Bitcoin, and other blockchains (TBD). The smart contracts are designed for transparency, security, and immutability.
               </p>
             </section>
 
             <section>
               <h2 className="text-2xl font-display font-bold mb-4">Contract Architecture</h2>
               <ul className="list-disc list-inside space-y-2 text-muted-foreground">
-                <li><strong>Blockchain:</strong> Solana (mainnet-beta)</li>
-                <li><strong>Token Standard:</strong> Metaplex NFT Standard</li>
+                <li><strong>Primary Blockchain:</strong> Solana (mainnet-beta) with Metaplex NFT Standard</li>
+                <li><strong>Multi-Chain Support:</strong> Potential deployment on BNB Smart Chain, Bitcoin, and others (TBD)</li>
                 <li><strong>Minting Protocol:</strong> Controlled treasury wallet minting</li>
                 <li><strong>Update Authority:</strong> Revoked after minting (immutable metadata)</li>
                 <li><strong>Royalties:</strong> None (this is an art/educational project)</li>
@@ -75,7 +75,7 @@ export default function SmartContract() {
             <section>
               <h2 className="text-2xl font-display font-bold mb-4">Security & Verification</h2>
               <p className="text-muted-foreground leading-relaxed">
-                All smart contract interactions are transparent and verifiable on the Solana blockchain. The contract code follows Solana best practices and uses audited Metaplex libraries. No smart contract can modify economic data or create financial obligations.
+                All smart contract interactions are transparent and verifiable on-chain. The contract code follows blockchain best practices and uses audited libraries appropriate to each chain. No smart contract can modify economic data or create financial obligations.
               </p>
             </section>
 

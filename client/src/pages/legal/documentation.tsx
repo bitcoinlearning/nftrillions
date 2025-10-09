@@ -118,17 +118,17 @@ export default function Documentation() {
                 <li><strong>Economic Indicators:</strong> CPI and interest rates at that time</li>
                 <li><strong>Political Context:</strong> U.S. President during that period</li>
                 <li><strong>Historical Events:</strong> Major headlines and context</li>
-                <li><strong>Blockchain Data:</strong> Solana address and minting timestamp</li>
+                <li><strong>Blockchain Data:</strong> On-chain address and minting timestamp</li>
               </ul>
             </section>
 
             <section>
               <h2 className="text-2xl font-display font-bold mb-4">Technical Stack</h2>
               <ul className="list-disc list-inside space-y-2 text-muted-foreground">
-                <li><strong>Blockchain:</strong> Solana (fast, low-cost transactions)</li>
+                <li><strong>Blockchain:</strong> Initial launch on Solana; potential multi-chain support (BNB Smart Chain, Bitcoin, others TBD)</li>
                 <li><strong>Frontend:</strong> React + TypeScript + Vite</li>
                 <li><strong>API Integration:</strong> U.S. Treasury FiscalData API</li>
-                <li><strong>Smart Contracts:</strong> Metaplex NFT Standard</li>
+                <li><strong>Smart Contracts:</strong> Chain-specific standards (Metaplex for Solana, BEP-721/1155 for BSC, etc.)</li>
                 <li><strong>Hosting:</strong> Static deployment (Replit, SiteGround, etc.)</li>
               </ul>
             </section>

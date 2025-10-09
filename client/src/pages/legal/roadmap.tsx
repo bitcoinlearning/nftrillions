@@ -77,6 +77,10 @@ export default function Roadmap() {
                   <span className="text-primary mt-1">◐</span>
                   <span>Treasury wallet setup for controlled releases</span>
                 </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-primary mt-1">◐</span>
+                  <span>Multi-chain expansion: BNB Smart Chain, Bitcoin, and others (TBD)</span>
+                </li>
               </ul>
             </section>
 

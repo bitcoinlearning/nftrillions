@@ -32,7 +32,7 @@ export default function Privacy() {
               </p>
               <ul className="list-disc list-inside space-y-2 text-muted-foreground">
                 <li><strong>Website Analytics:</strong> Basic usage statistics (page views, device types, general location) via standard web analytics</li>
-                <li><strong>Blockchain Data:</strong> Publicly visible Solana wallet addresses and transaction data (inherent to blockchain technology)</li>
+                <li><strong>Blockchain Data:</strong> Publicly visible wallet addresses and transaction data (inherent to blockchain technology across all chains)</li>
                 <li><strong>No Personal Information:</strong> We do not collect names, emails, phone numbers, or other personal identifiers</li>
               </ul>
             </section>
@@ -64,7 +64,7 @@ export default function Privacy() {
               </p>
               <ul className="list-disc list-inside space-y-2 text-muted-foreground">
                 <li><strong>U.S. Treasury APIs:</strong> We fetch public debt data from official government APIs</li>
-                <li><strong>Solana Blockchain:</strong> NFT transactions are recorded on the public Solana blockchain</li>
+                <li><strong>Blockchain Networks:</strong> NFT transactions are recorded on public blockchains (Solana, BNB Smart Chain, Bitcoin, others TBD)</li>
                 <li><strong>Hosting Provider:</strong> Website hosted on standard web infrastructure (Replit, SiteGround, etc.)</li>
               </ul>
               <p className="text-muted-foreground leading-relaxed mt-4">
@@ -75,7 +75,7 @@ export default function Privacy() {
             <section>
               <h2 className="text-2xl font-display font-bold mb-4">5. Blockchain Privacy</h2>
               <p className="text-muted-foreground leading-relaxed">
-                NFT ownership and transactions are recorded on the Solana blockchain, which is public and permanent. Wallet addresses and transaction history are visible to anyone. This is an inherent feature of blockchain technology, not a privacy choice.
+                NFT ownership and transactions are recorded on public blockchains, which are permanent and transparent by design. Wallet addresses and transaction history are visible to anyone. This is an inherent feature of blockchain technology, not a privacy choice. This applies to all chains we deploy on (Solana, BNB Smart Chain, Bitcoin, others TBD).
               </p>
             </section>
 
