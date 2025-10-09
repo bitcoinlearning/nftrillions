@@ -35,6 +35,76 @@ export class MemStorage implements IStorage {
     this.initializeData();
   }
 
+  // Historical debt milestones (slice number -> date)
+  private debtMilestones: Map<number, string> = new Map([
+    [10, "Oct 1981"],     // $1 trillion
+    [20, "1987"],         // $2 trillion
+    [30, "1990"],         // $3 trillion
+    [50, "2000"],         // $5 trillion
+    [100, "Sep 2008"],    // $10 trillion
+    [130, "2010"],        // $13 trillion
+    [150, "2012"],        // $15 trillion
+    [190, "Apr 2016"],    // $19 trillion
+    [200, "Sep 2017"],    // $20 trillion
+    [210, "Oct 2018"],    // $21 trillion
+    [220, "Aug 2019"],    // $22 trillion
+    [270, "2020"],        // $27 trillion
+    [280, "Apr 2021"],    // $28 trillion
+    [310, "2022"],        // $31 trillion
+    [320, "Jun 2023"],    // $32 trillion
+    [330, "Sep 2023"],    // $33 trillion
+    [340, "Jan 2024"],    // $34 trillion
+    [350, "Apr 2024"],    // $35 trillion
+    [360, "Jun 2025"],    // $36 trillion
+    [370, "Aug 2025"],    // $37 trillion
+    [380, "Oct 2025"],    // $38 trillion (projected)
+  ]);
+
+  private estimateDate(sliceNumber: number): string {
+    // If we have exact milestone, return it
+    if (this.debtMilestones.has(sliceNumber)) {
+      return this.debtMilestones.get(sliceNumber)!;
+    }
+
+    // Find surrounding milestones for interpolation
+    const milestones = Array.from(this.debtMilestones.entries()).sort((a, b) => a[0] - b[0]);
+    
+    // Find the two milestones that bracket this slice
+    let lowerMilestone = milestones[0];
+    let upperMilestone = milestones[milestones.length - 1];
+    
+    for (let i = 0; i < milestones.length - 1; i++) {
+      if (milestones[i][0] <= sliceNumber && milestones[i + 1][0] >= sliceNumber) {
+        lowerMilestone = milestones[i];
+        upperMilestone = milestones[i + 1];
+        break;
+      }
+    }
+
+    // If before first milestone
+    if (sliceNumber < lowerMilestone[0]) {
+      return `Before ${lowerMilestone[1]}`;
+    }
+
+    // If after last milestone (projected)
+    if (sliceNumber > upperMilestone[0]) {
+      return `After ${upperMilestone[1]}`;
+    }
+
+    // Interpolate between milestones
+    const [lowerNum, lowerDate] = lowerMilestone;
+    const [upperNum, upperDate] = upperMilestone;
+    
+    // Simple interpolation - just use the range
+    const midpoint = (lowerNum + upperNum) / 2;
+    
+    if (sliceNumber < midpoint) {
+      return `~${lowerDate}`;
+    } else {
+      return `~${upperDate}`;
+    }
+  }
+
   private initializeData() {
     // Generate all 1000 slices
     const MIN_UNLOCKED = 389; // Minimum slices to unlock for showcase
@@ -63,7 +133,7 @@ export class MemStorage implements IStorage {
         tier,
         isUnlocked,
         unlockedAt: isUnlocked ? new Date() : null,
-        dateReached: null,
+        dateReached: this.estimateDate(i),
         cpiRate: null,
         interestRate: null,
         historicalContext: null,
