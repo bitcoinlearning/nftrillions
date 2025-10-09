@@ -22,7 +22,10 @@ export default function CollectionsBrowser() {
   });
 
   const { data: filteredResults } = useQuery<Slice[]>({
-    queryKey: ["/api/slices/filter", { tier: tierFilter !== "all" ? tierFilter : undefined, unlocked: statusFilter !== "all" ? statusFilter : undefined }],
+    queryKey: ["/api/slices/filter", { 
+      tier: tierFilter !== "all" ? parseInt(tierFilter) : undefined, 
+      unlocked: statusFilter !== "all" ? statusFilter === "true" : undefined 
+    }],
     enabled: tierFilter !== "all" || statusFilter !== "all",
   });
 
@@ -48,6 +51,11 @@ export default function CollectionsBrowser() {
     { tier: 3, price: 300, range: "Slices #201 — #300" },
     { tier: 4, price: 400, range: "Slices #301 — #400" },
     { tier: 5, price: 500, range: "Slices #401 — #500" },
+    { tier: 6, price: 600, range: "Slices #501 — #600" },
+    { tier: 7, price: 700, range: "Slices #601 — #700" },
+    { tier: 8, price: 800, range: "Slices #701 — #800" },
+    { tier: 9, price: 900, range: "Slices #801 — #900" },
+    { tier: 10, price: 1000, range: "Slices #901 — #1,000" },
   ];
 
   const clearFilters = () => {
@@ -96,7 +104,12 @@ export default function CollectionsBrowser() {
                     <SelectItem value="2">$200 Tier</SelectItem>
                     <SelectItem value="3">$300 Tier</SelectItem>
                     <SelectItem value="4">$400 Tier</SelectItem>
-                    <SelectItem value="5">$500+ Tiers</SelectItem>
+                    <SelectItem value="5">$500 Tier</SelectItem>
+                    <SelectItem value="6">$600 Tier</SelectItem>
+                    <SelectItem value="7">$700 Tier</SelectItem>
+                    <SelectItem value="8">$800 Tier</SelectItem>
+                    <SelectItem value="9">$900 Tier</SelectItem>
+                    <SelectItem value="10">$1000 Tier</SelectItem>
                   </SelectContent>
                 </Select>
 

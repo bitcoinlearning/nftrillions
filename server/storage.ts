@@ -36,80 +36,51 @@ export class MemStorage implements IStorage {
   }
 
   private initializeData() {
-    // Initialize with some sample slices
-    const sampleSlices: Slice[] = [
-      {
+    // Generate all 1000 slices
+    const MIN_UNLOCKED = 389; // Minimum slices to unlock for showcase
+    
+    for (let i = 1; i <= 1000; i++) {
+      // Calculate tier (1-10, each tier has 100 slices)
+      const tier = Math.ceil(i / 100);
+      
+      // Calculate price based on tier
+      const mintPrice = tier * 100;
+      
+      // Calculate debt amount ($100B per slice)
+      const debtBillions = i * 100;
+      const debtAmount = `$${(debtBillions * 1_000_000_000).toLocaleString('en-US')}`;
+      
+      // Unlock logic:
+      // - Slices 1-389: Always unlocked (showcase minimum)
+      // - Slices 390+: Would auto-unlock based on current debt (378), so locked for now
+      const isUnlocked = i <= MIN_UNLOCKED;
+      
+      const slice: Slice = {
         id: randomUUID(),
-        number: 1,
-        debtAmount: "$100,000,000,000",
-        mintPrice: 100,
-        tier: 1,
-        isUnlocked: true,
-        unlockedAt: new Date("1981-09-28"),
-        dateReached: "September 1981",
-        cpiRate: "10.3%",
-        interestRate: "15.8%",
-        historicalContext: "This milestone was reached during the Reagan administration, a period marked by high inflation and aggressive Federal Reserve policies to combat it. The Volcker shock had just begun, with interest rates reaching historic highs to curb double-digit inflation.",
-        president: "Ronald Reagan",
-        headlines: JSON.stringify([
-          "Fed Raises Interest Rates to Combat Inflation",
-          "Reagan's Economic Policies Take Effect",
-          "National Debt Crosses $100 Billion Milestone"
-        ]),
+        number: i,
+        debtAmount,
+        mintPrice,
+        tier,
+        isUnlocked,
+        unlockedAt: isUnlocked ? new Date() : null,
+        dateReached: null,
+        cpiRate: null,
+        interestRate: null,
+        historicalContext: null,
+        president: null,
+        headlines: null,
         solanaAddress: null,
-      },
-      {
-        id: randomUUID(),
-        number: 10,
-        debtAmount: "$1,000,000,000,000",
-        mintPrice: 100,
-        tier: 1,
-        isUnlocked: true,
-        unlockedAt: new Date("1982-10-22"),
-        dateReached: "October 1982",
-        cpiRate: "5.1%",
-        interestRate: "12.0%",
-        historicalContext: "The U.S. debt reached $1 trillion during a severe recession. Unemployment hit 10.8%, the highest since the Great Depression.",
-        president: "Ronald Reagan",
-        headlines: JSON.stringify([
-          "U.S. Debt Reaches Historic $1 Trillion",
-          "Recession Deepens as Unemployment Soars",
-          "Manufacturing Sector Hit Hardest"
-        ]),
-        solanaAddress: null,
-      },
-      {
-        id: randomUUID(),
-        number: 50,
-        debtAmount: "$5,000,000,000,000",
-        mintPrice: 100,
-        tier: 1,
-        isUnlocked: true,
-        unlockedAt: new Date("1996-03-29"),
-        dateReached: "March 1996",
-        cpiRate: "2.9%",
-        interestRate: "5.25%",
-        historicalContext: "During the Clinton administration's economic expansion, the debt reached $5 trillion despite strong economic growth and budget surplus efforts.",
-        president: "Bill Clinton",
-        headlines: JSON.stringify([
-          "Economy Shows Strong Growth Despite Rising Debt",
-          "Technology Sector Boom Continues",
-          "Clinton Pushes for Balanced Budget"
-        ]),
-        solanaAddress: null,
-      }
-    ];
+      };
+      
+      this.slices.set(i, slice);
+    }
 
-    sampleSlices.forEach(slice => {
-      this.slices.set(slice.number, slice);
-    });
-
-    // Initialize debt stats (source: usdebtclock.org)
+    // Initialize debt stats (current real debt: ~$37.89T = 378 slices)
     this.debtStats = {
       id: randomUUID(),
       currentDebt: "$37,840,931,900,999",
-      unlockedSlices: 378,
-      nextUnlockAt: "$37,900,000,000,000",
+      unlockedSlices: MIN_UNLOCKED, // Show 389 unlocked for showcase
+      nextUnlockAt: "$39,000,000,000,000", // Next unlock at $39T (slice #390)
       lastUpdated: new Date(),
     };
   }
